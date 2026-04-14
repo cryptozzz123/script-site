@@ -62,17 +62,16 @@ section.active{
   display:block;
   animation:fade .4s;
 }
-
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:80px 20px;
+  padding:100px 20px;
 }
 
 .hero h1{
-  font-size:50px;
+  font-size:55px;
   font-weight:900;
   background:linear-gradient(90deg,#0ff,#00aaff,#0ff);
   -webkit-background-clip:text;
@@ -84,13 +83,13 @@ section.active{
   color:#bbb;
 }
 
-/* WRAPPER (THIS FIXES BIG UI) */
+/* WRAPPER */
 .wrapper{
   max-width:1100px;
   margin:auto;
 }
 
-/* SCRIPTS */
+/* CARDS */
 .container{
   padding:20px;
   display:grid;
@@ -109,7 +108,7 @@ section.active{
 .card:hover{
   transform:translateY(-5px);
   border-color:#0ff;
-  box-shadow:0 0 20px rgba(0,255,255,0.2);
+  box-shadow:0 0 20px rgba(0,255,255,0.25);
 }
 
 .card img{
@@ -128,8 +127,14 @@ section.active{
 
 .long-desc{
   font-size:11px;
-  color:#777;
+  color:#888;
   margin-top:6px;
+}
+
+.meta{
+  font-size:11px;
+  color:#777;
+  margin-top:4px;
 }
 
 .copy-btn{
@@ -159,9 +164,9 @@ section.active{
 /* COMING */
 .coming{
   text-align:center;
-  font-size:30px;
+  font-size:32px;
   font-weight:900;
-  padding:50px;
+  padding:60px;
   background:linear-gradient(90deg,#0ff,#00aaff,#0ff);
   -webkit-background-clip:text;
   color:transparent;
@@ -186,8 +191,8 @@ section.active{
 <section id="home" class="active">
 <div class="hero">
 <h1>ScriptNow</h1>
-<p>Premium Roblox script hub with smooth UI & powerful scripts.</p>
-<p>Created in 2026</p>
+<p>Premium Roblox script hub with Velocity-style UI.</p>
+<p>Built in 2026</p>
 </div>
 </section>
 
@@ -205,7 +210,9 @@ section.active{
 <div class="card-content">
 <h3>Infinite Yield</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()</div>
-<div class="long-desc">Admin command script.</div>
+<div class="long-desc">Infinite Yield is the most famous admin command script in Roblox, giving powerful control over your character and environment.</div>
+<div class="meta">Supported: Universal (All)</div>
+<div class="meta">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy Script</button>
 </div></div>
 
@@ -215,7 +222,9 @@ section.active{
 <div class="card-content">
 <h3>HoHo Hub</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
-<div class="long-desc">Multi-game hub.</div>
+<div class="long-desc">HoHo Hub is a powerful multi-game script hub focused on automation and efficiency.</div>
+<div class="meta">Supported: Multiple Games</div>
+<div class="meta">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy Script</button>
 </div></div>
 
@@ -225,7 +234,9 @@ section.active{
 <div class="card-content">
 <h3>Quantum Onyx</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua"))()</div>
-<div class="long-desc">Low lag script.</div>
+<div class="long-desc">Quantum Onyx focuses on speed and low lag performance.</div>
+<div class="meta">Supported: Blox Fruits</div>
+<div class="meta">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua`))()')">Copy Script</button>
 </div></div>
 
@@ -235,7 +246,9 @@ section.active{
 <div class="card-content">
 <h3>NullFire</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()</div>
-<div class="long-desc">Visual + automation hub.</div>
+<div class="long-desc">NullFire is known for visuals and automation features.</div>
+<div class="meta">Supported: Doors, NDS</div>
+<div class="meta">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua`))()')">Copy Script</button>
 </div></div>
 
@@ -245,7 +258,9 @@ section.active{
 <div class="card-content">
 <h3>Moondeity Hub</h3>
 <div class="desc">loadstring(game:HttpGet("https://moondiety.com/loader"))()</div>
-<div class="long-desc">Multi-game support.</div>
+<div class="long-desc">Moondeity Hub supports many popular Roblox games.</div>
+<div class="meta">Supported: Multiple Games</div>
+<div class="meta">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://moondiety.com/loader`))()')">Copy Script</button>
 </div></div>
 
@@ -255,7 +270,9 @@ section.active{
 <div class="card-content">
 <h3>Deluxed Hub</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua",true))()</div>
-<div class="long-desc">Dandys World script.</div>
+<div class="long-desc">Deluxed Hub focuses on Dandys World automation.</div>
+<div class="meta">Supported: Dandys World</div>
+<div class="meta">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua`,true))()')">Copy Script</button>
 </div></div>
 
@@ -265,7 +282,9 @@ section.active{
 <div class="card-content">
 <h3>Dropkick Fling</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua"))()</div>
-<div class="long-desc">Fling script.</div>
+<div class="long-desc">Fun physics-based fling script.</div>
+<div class="meta">Supported: Universal</div>
+<div class="meta">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua`))()')">Copy Script</button>
 </div></div>
 
@@ -280,7 +299,7 @@ section.active{
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>ScriptNow is a premium Roblox script hub inspired by Velocity UI.</p>
+<p>This is a premium Roblox script hub inspired by Velocity UI.</p>
 <p>Owner: @Mybrocrashedout</p>
 </div>
 </section>
