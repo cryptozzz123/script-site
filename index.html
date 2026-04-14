@@ -18,18 +18,25 @@
 body{
   background:#000;
   color:#fff;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 
-/* ✨ GRID BACKGROUND */
+/* ===== CANVAS BACKGROUND ===== */
 canvas{
   position:fixed;
   inset:0;
-  z-index:-1;
-  opacity:0.4;
+  z-index:-2;
 }
 
-/* ✨ NAVBAR GLASS EFFECT */
+/* ===== CUBES BACKGROUND ===== */
+#cubes{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:0.8;
+}
+
+/* ===== NAV ===== */
 nav{
   position:fixed;
   top:0;
@@ -38,7 +45,7 @@ nav{
   justify-content:space-between;
   padding:18px 40px;
   background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(15px);
+  backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(255,255,255,0.1);
   z-index:10;
 }
@@ -55,96 +62,75 @@ nav{
   color:#00ffcc;
 }
 
-/* ✨ SECTIONS ANIMATION */
+/* ===== SECTIONS ===== */
 section{
   display:none;
   min-height:100vh;
-  padding-top:100px;
-  opacity:0;
-  transform:translateY(10px);
-  transition:0.5s ease;
+  padding-top:90px;
+  overflow:auto;
 }
 
 section.active{
   display:block;
-  opacity:1;
-  transform:translateY(0);
 }
 
-/* ✨ HERO */
+/* ===== HERO ===== */
 .hero{
   text-align:center;
   margin-top:120px;
 }
 
 .hero h1{
-  font-size:60px;
-  animation: glow 2s infinite alternate;
+  font-size:55px;
 }
 
 .hero span{
-  text-decoration:underline;
   color:#00ffcc;
+  text-decoration:underline;
 }
 
-.hero button{
-  margin-top:20px;
-  padding:12px 20px;
-  border:none;
-  border-radius:10px;
-  background:white;
-  color:black;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.hero button:hover{
-  background:#00ffcc;
-  box-shadow:0 0 20px rgba(0,255,204,0.4);
-}
-
-/* ✨ CARD GRID */
+/* ===== GRID ===== */
 .container{
   padding:40px;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:25px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
 }
 
+/* ===== CARD ===== */
 .card{
   background:#111;
   border-radius:15px;
-  overflow:hidden;
   border:1px solid rgba(255,255,255,0.1);
+  overflow:hidden;
+  position:relative;
   transition:0.3s;
+  cursor:none;
 }
 
+/* glow hover */
 .card:hover{
   transform:translateY(-8px);
-  box-shadow:0 0 25px rgba(255,255,255,0.08);
-  border-color:rgba(0,255,204,0.3);
+  box-shadow:0 0 25px rgba(0,255,204,0.25);
+  border-color:#00ffcc;
 }
 
+/* image */
 .card img{
   width:100%;
-  height:170px;
+  height:150px;
   object-fit:cover;
 }
 
+/* content */
 .card-content{
-  padding:15px;
+  padding:12px;
 }
 
-.desc{
-  font-size:11px;
-  color:#aaa;
-}
+.desc{font-size:11px;color:#aaa}
+.long-desc{font-size:11px;color:#777}
 
-.long-desc{
-  font-size:11px;
-  color:#777;
-}
-
+/* button */
 .copy-btn{
   width:100%;
   margin-top:10px;
@@ -159,10 +145,39 @@ section.active{
 
 .copy-btn:hover{
   background:#00ffcc;
-  box-shadow:0 0 15px rgba(0,255,204,0.4);
 }
 
-/* ✨ SEARCH */
+/* ===== LIGHTNING CURSOR ===== */
+.lightning{
+  position:fixed;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle,#00ffcc,transparent);
+  box-shadow:0 0 20px #00ffcc;
+  transform:translate(-50%,-50%);
+  z-index:999;
+}
+
+/* ===== CUBES ===== */
+.cube{
+  position:absolute;
+  width:30px;
+  height:30px;
+  background:rgba(0,255,204,0.08);
+  border:1px solid rgba(0,255,204,0.2);
+  transform:rotate(45deg);
+  animation:float 6s infinite ease-in-out;
+}
+
+@keyframes float{
+  0%{transform:translateY(0) rotate(45deg)}
+  50%{transform:translateY(-40px) rotate(90deg)}
+  100%{transform:translateY(0) rotate(45deg)}
+}
+
+/* search */
 .search{
   margin:20px auto;
   display:block;
@@ -173,148 +188,196 @@ section.active{
   border:none;
   background:#111;
   color:white;
-  outline:none;
-}
-
-.search:focus{
-  box-shadow:0 0 10px rgba(0,255,204,0.3);
-}
-
-/* ✨ ANIMATION */
-@keyframes glow{
-  from{text-shadow:0 0 10px #00ffcc;}
-  to{text-shadow:0 0 25px #00ffcc;}
-}
-
-.coming{
-  text-align:center;
-  font-size:30px;
-  padding:50px;
-  color:#888;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="grid"></canvas>
+<canvas id="bg"></canvas>
+<canvas id="cubes"></canvas>
+
+<div class="lightning" id="lightning"></div>
 
 <nav>
   <div>ScriptNow</div>
   <div class="nav-links">
-    <span onclick="showSection('home')">Home</span>
-    <span onclick="showSection('scripts')">Scripts</span>
-    <span onclick="showSection('about')">About</span>
+    <span onclick="show('home')">Home</span>
+    <span onclick="show('scripts')">Scripts</span>
+    <span onclick="show('about')">About</span>
   </div>
 </nav>
 
 <!-- HOME -->
 <section id="home" class="active">
   <div class="hero">
-    <h1>Made with Elite <br><span>Power</span></h1>
-    <p>Premium Roblox Script Hub</p>
-    <button onclick="showSection('scripts')">Explore Scripts</button>
+    <h1>Elite <span>Script Hub</span></h1>
+    <p>Premium UI Experience</p>
   </div>
 </section>
 
 <!-- SCRIPTS -->
 <section id="scripts">
-<input class="search" id="search" placeholder="Search scripts..." onkeyup="searchScripts()">
+<input class="search" placeholder="Search..." onkeyup="search()">
 
 <div class="container">
 
-<!-- CARD -->
+<!-- ALL SCRIPTS RESTORED -->
+
 <div class="card">
 <img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
 <div class="card-content">
 <h3>Infinite Yield</h3>
-<div class="desc">Universal Script</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy Script</button>
-</div>
-</div>
+<div class="desc">Universal Admin Script</div>
+<div class="long-desc">Status: Online</div>
+<button class="copy-btn" onclick="copy('Infinite Yield')">Copy</button>
+</div></div>
 
 <div class="card">
 <img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
 <div class="card-content">
 <h3>HoHo Hub</h3>
-<div class="desc">Multi Game Support</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy Script</button>
-</div>
-</div>
+<div class="desc">Multi Game Hub</div>
+<div class="long-desc">Status: Online</div>
+<button class="copy-btn" onclick="copy('HoHo Hub')">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
+<div class="card-content">
+<h3>Quantum Onyx</h3>
+<div class="desc">Blox Fruits Hub</div>
+<div class="long-desc">Status: Online</div>
+<button class="copy-btn" onclick="copy('Quantum Onyx')">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1765399635373.png">
+<div class="card-content">
+<h3>NullFire</h3>
+<div class="desc">Doors / NDS Hub</div>
+<div class="long-desc">Status: Online</div>
+<button class="copy-btn" onclick="copy('NullFire')">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1753093706828.png">
+<div class="card-content">
+<h3>Moondeity</h3>
+<div class="desc">Universal Hub</div>
+<div class="long-desc">Status: Online</div>
+<button class="copy-btn" onclick="copy('Moondeity')">Copy</button>
+</div></div>
 
 </div>
-
-<div class="coming">More Scripts Coming Soon...</div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>ScriptNow UI Upgrade Version</p>
-<p>Built for learning & UI practice</p>
+<p>ScriptNow UI upgraded version</p>
 </div>
 </section>
 
 <script>
 
 /* SECTION SWITCH */
-function showSection(id){
+function show(id){
   document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
   document.getElementById(id).classList.add('active')
 }
 
 /* COPY */
-function copyScriptText(text){
+function copy(text){
   navigator.clipboard.writeText(text)
-  alert("Copied!")
 }
 
 /* SEARCH */
-function searchScripts(){
-  let input=document.getElementById('search').value.toLowerCase()
-  document.querySelectorAll('.card').forEach(card=>{
-    card.style.display=card.innerText.toLowerCase().includes(input)
-    ?'block':'none'
+function search(){
+  let v=document.querySelector('.search').value.toLowerCase()
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display=c.innerText.toLowerCase().includes(v)?'block':'none'
   })
 }
 
-/* ✨ MOVING GRID BACKGROUND */
-const canvas=document.getElementById("grid");
-const ctx=canvas.getContext("2d");
+/* ===== LIGHTNING CURSOR ===== */
+const cursor=document.getElementById("lightning");
+
+document.addEventListener("mousemove",(e)=>{
+  cursor.style.left=e.clientX+"px";
+  cursor.style.top=e.clientY+"px";
+});
+
+/* ===== BACKGROUND GRID ===== */
+const bg=document.getElementById("bg");
+const ctx=bg.getContext("2d");
 
 function resize(){
-  canvas.width=window.innerWidth;
-  canvas.height=window.innerHeight;
+  bg.width=window.innerWidth;
+  bg.height=window.innerHeight;
 }
 resize();
 window.addEventListener("resize",resize);
 
 function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
+  ctx.clearRect(0,0,bg.width,bg.height);
   ctx.strokeStyle="rgba(255,255,255,0.05)";
-  let gap=40;
+  let g=50;
 
-  for(let x=0;x<canvas.width;x+=gap){
+  for(let x=0;x<bg.width;x+=g){
     ctx.beginPath();
     ctx.moveTo(x,0);
-    ctx.lineTo(x,canvas.height);
+    ctx.lineTo(x,bg.height);
     ctx.stroke();
   }
 
-  for(let y=0;y<canvas.height;y+=gap){
+  for(let y=0;y<bg.height;y+=g){
     ctx.beginPath();
     ctx.moveTo(0,y);
-    ctx.lineTo(canvas.width,y);
+    ctx.lineTo(bg.width,y);
     ctx.stroke();
   }
 
   requestAnimationFrame(draw);
 }
 draw();
+
+/* ===== FLOATING CUBES ===== */
+const cubeCanvas=document.getElementById("cubes");
+const cctx=cubeCanvas.getContext("2d");
+
+function resize2(){
+  cubeCanvas.width=window.innerWidth;
+  cubeCanvas.height=window.innerHeight;
+}
+resize2();
+
+let cubes=[];
+
+for(let i=0;i<20;i++){
+  cubes.push({
+    x:Math.random()*window.innerWidth,
+    y:Math.random()*window.innerHeight,
+    s:20+Math.random()*30,
+    v:0.5+Math.random()
+  });
+}
+
+function drawCubes(){
+  cctx.clearRect(0,0,cubeCanvas.width,cubeCanvas.height);
+
+  cubes.forEach(c=>{
+    c.y-=c.v;
+    if(c.y<-50)c.y=window.innerHeight+50;
+
+    cctx.strokeStyle="rgba(0,255,204,0.2)";
+    cctx.strokeRect(c.x,c.y,c.s,c.s);
+  });
+
+  requestAnimationFrame(drawCubes);
+}
+drawCubes();
 
 </script>
 
