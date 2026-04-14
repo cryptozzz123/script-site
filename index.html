@@ -21,22 +21,35 @@ body{
   overflow:hidden;
 }
 
-/* ===== CANVAS BACKGROUND ===== */
+/* BACKGROUND CANVAS */
 canvas{
   position:fixed;
   inset:0;
   z-index:-2;
 }
 
-/* ===== CUBES BACKGROUND ===== */
+/* CUBES */
 #cubes{
   position:fixed;
   inset:0;
   z-index:-1;
-  opacity:0.8;
+  opacity:0.7;
 }
 
-/* ===== NAV ===== */
+/* LIGHTNING CURSOR */
+.lightning{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle,#00ffcc,transparent);
+  box-shadow:0 0 20px #00ffcc;
+  transform:translate(-50%,-50%);
+  z-index:999;
+}
+
+/* NAV */
 nav{
   position:fixed;
   top:0;
@@ -62,67 +75,78 @@ nav{
   color:#00ffcc;
 }
 
-/* ===== SECTIONS ===== */
+/* SECTIONS */
 section{
   display:none;
   min-height:100vh;
   padding-top:90px;
-  overflow:auto;
 }
 
 section.active{
   display:block;
 }
 
-/* ===== HERO ===== */
+/* HERO (RESTORED TEXT STYLE) */
 .hero{
   text-align:center;
   margin-top:120px;
 }
 
 .hero h1{
-  font-size:55px;
+  font-size:60px;
 }
 
 .hero span{
-  color:#00ffcc;
   text-decoration:underline;
+  color:#00ffcc;
 }
 
-/* ===== GRID ===== */
+.hero button{
+  margin-top:20px;
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background:white;
+  color:black;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.hero button:hover{
+  background:#00ffcc;
+  box-shadow:0 0 20px rgba(0,255,204,0.4);
+}
+
+/* GRID */
 .container{
   padding:40px;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:20px;
 }
 
-/* ===== CARD ===== */
+/* CARD */
 .card{
   background:#111;
   border-radius:15px;
-  border:1px solid rgba(255,255,255,0.1);
   overflow:hidden;
-  position:relative;
+  border:1px solid rgba(255,255,255,0.1);
   transition:0.3s;
   cursor:none;
 }
 
-/* glow hover */
 .card:hover{
   transform:translateY(-8px);
-  box-shadow:0 0 25px rgba(0,255,204,0.25);
   border-color:#00ffcc;
+  box-shadow:0 0 20px rgba(0,255,204,0.2);
 }
 
-/* image */
 .card img{
   width:100%;
   height:150px;
   object-fit:cover;
 }
 
-/* content */
 .card-content{
   padding:12px;
 }
@@ -130,7 +154,6 @@ section.active{
 .desc{font-size:11px;color:#aaa}
 .long-desc{font-size:11px;color:#777}
 
-/* button */
 .copy-btn{
   width:100%;
   margin-top:10px;
@@ -140,44 +163,13 @@ section.active{
   background:white;
   color:black;
   cursor:pointer;
-  transition:0.3s;
 }
 
 .copy-btn:hover{
   background:#00ffcc;
 }
 
-/* ===== LIGHTNING CURSOR ===== */
-.lightning{
-  position:fixed;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(circle,#00ffcc,transparent);
-  box-shadow:0 0 20px #00ffcc;
-  transform:translate(-50%,-50%);
-  z-index:999;
-}
-
-/* ===== CUBES ===== */
-.cube{
-  position:absolute;
-  width:30px;
-  height:30px;
-  background:rgba(0,255,204,0.08);
-  border:1px solid rgba(0,255,204,0.2);
-  transform:rotate(45deg);
-  animation:float 6s infinite ease-in-out;
-}
-
-@keyframes float{
-  0%{transform:translateY(0) rotate(45deg)}
-  50%{transform:translateY(-40px) rotate(90deg)}
-  100%{transform:translateY(0) rotate(45deg)}
-}
-
-/* search */
+/* SEARCH */
 .search{
   margin:20px auto;
   display:block;
@@ -196,9 +188,9 @@ section.active{
 
 <canvas id="bg"></canvas>
 <canvas id="cubes"></canvas>
-
 <div class="lightning" id="lightning"></div>
 
+<!-- NAV -->
 <nav>
   <div>ScriptNow</div>
   <div class="nav-links">
@@ -208,28 +200,31 @@ section.active{
   </div>
 </nav>
 
-<!-- HOME -->
+<!-- HOME (RESTORED ORIGINAL TEXT) -->
 <section id="home" class="active">
   <div class="hero">
-    <h1>Elite <span>Script Hub</span></h1>
-    <p>Premium UI Experience</p>
+    <h1>Made with Elite <br><span>Power</span></h1>
+    <p>Premium Roblox Script Hub</p>
+    <p>Created in 2026</p>
+    <button onclick="show('scripts')">Explore Scripts</button>
   </div>
 </section>
 
-<!-- SCRIPTS -->
+<!-- SCRIPTS (FULL RESTORE) -->
 <section id="scripts">
+
 <input class="search" placeholder="Search..." onkeyup="search()">
 
 <div class="container">
 
-<!-- ALL SCRIPTS RESTORED -->
+<!-- ORIGINAL SCRIPTS BACK -->
 
 <div class="card">
 <img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
 <div class="card-content">
 <h3>Infinite Yield</h3>
 <div class="desc">Universal Admin Script</div>
-<div class="long-desc">Status: Online</div>
+<div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copy('Infinite Yield')">Copy</button>
 </div></div>
 
@@ -238,7 +233,7 @@ section.active{
 <div class="card-content">
 <h3>HoHo Hub</h3>
 <div class="desc">Multi Game Hub</div>
-<div class="long-desc">Status: Online</div>
+<div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copy('HoHo Hub')">Copy</button>
 </div></div>
 
@@ -247,7 +242,7 @@ section.active{
 <div class="card-content">
 <h3>Quantum Onyx</h3>
 <div class="desc">Blox Fruits Hub</div>
-<div class="long-desc">Status: Online</div>
+<div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copy('Quantum Onyx')">Copy</button>
 </div></div>
 
@@ -256,33 +251,52 @@ section.active{
 <div class="card-content">
 <h3>NullFire</h3>
 <div class="desc">Doors / NDS Hub</div>
-<div class="long-desc">Status: Online</div>
+<div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copy('NullFire')">Copy</button>
 </div></div>
 
 <div class="card">
 <img src="https://scriptblox.com/images/script/0-1753093706828.png">
 <div class="card-content">
-<h3>Moondeity</h3>
+<h3>Moondeity Hub</h3>
 <div class="desc">Universal Hub</div>
-<div class="long-desc">Status: Online</div>
-<button class="copy-btn" onclick="copy('Moondeity')">Copy</button>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copy('Moondeity Hub')">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
+<div class="card-content">
+<h3>Deluxed Hub</h3>
+<div class="desc">Dandys World</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copy('Deluxed Hub')">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
+<div class="card-content">
+<h3>Dropkick Fling</h3>
+<div class="desc">Universal Fling</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copy('Dropkick Fling')">Copy</button>
 </div></div>
 
 </div>
+
 </section>
 
 <!-- ABOUT -->
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>ScriptNow UI upgraded version</p>
+<p>ScriptNow Full UI Restored Version</p>
 </div>
 </section>
 
 <script>
 
-/* SECTION SWITCH */
+/* NAV */
 function show(id){
   document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
   document.getElementById(id).classList.add('active')
@@ -301,15 +315,15 @@ function search(){
   })
 }
 
-/* ===== LIGHTNING CURSOR ===== */
-const cursor=document.getElementById("lightning");
+/* LIGHTNING CURSOR */
+const l=document.getElementById("lightning");
 
 document.addEventListener("mousemove",(e)=>{
-  cursor.style.left=e.clientX+"px";
-  cursor.style.top=e.clientY+"px";
+  l.style.left=e.clientX+"px";
+  l.style.top=e.clientY+"px";
 });
 
-/* ===== BACKGROUND GRID ===== */
+/* BACKGROUND GRID */
 const bg=document.getElementById("bg");
 const ctx=bg.getContext("2d");
 
@@ -343,36 +357,36 @@ function draw(){
 }
 draw();
 
-/* ===== FLOATING CUBES ===== */
-const cubeCanvas=document.getElementById("cubes");
-const cctx=cubeCanvas.getContext("2d");
+/* FLOATING CUBES */
+const cube=document.getElementById("cubes");
+const c=cube.getContext("2d");
 
 function resize2(){
-  cubeCanvas.width=window.innerWidth;
-  cubeCanvas.height=window.innerHeight;
+  cube.width=window.innerWidth;
+  cube.height=window.innerHeight;
 }
 resize2();
 
 let cubes=[];
 
-for(let i=0;i<20;i++){
+for(let i=0;i<25;i++){
   cubes.push({
     x:Math.random()*window.innerWidth,
     y:Math.random()*window.innerHeight,
     s:20+Math.random()*30,
-    v:0.5+Math.random()
+    v:0.3+Math.random()
   });
 }
 
 function drawCubes(){
-  cctx.clearRect(0,0,cubeCanvas.width,cubeCanvas.height);
+  c.clearRect(0,0,cube.width,cube.height);
 
-  cubes.forEach(c=>{
-    c.y-=c.v;
-    if(c.y<-50)c.y=window.innerHeight+50;
+  cubes.forEach(b=>{
+    b.y-=b.v;
+    if(b.y<-50)b.y=window.innerHeight+50;
 
-    cctx.strokeStyle="rgba(0,255,204,0.2)";
-    cctx.strokeRect(c.x,c.y,c.s,c.s);
+    c.strokeStyle="rgba(0,255,204,0.2)";
+    c.strokeRect(b.x,b.y,b.s,b.s);
   });
 
   requestAnimationFrame(drawCubes);
