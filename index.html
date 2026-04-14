@@ -2,164 +2,235 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Roblox Script Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScriptNow</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f0f0f;
-  color: white;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#000;color:#fff;overflow-x:hidden}
+
+canvas{position:fixed;inset:0;pointer-events:none}
 
 /* NAVBAR */
-.navbar {
-  display: flex;
-  background: #1c1c1c;
-  padding: 12px;
-  gap: 10px;
+nav{
+  position:fixed;
+  top:0;width:100%;
+  display:flex;justify-content:space-between;
+  padding:20px 40px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  z-index:10;
 }
-
-.navbar button {
-  background: #2a2a2a;
-  border: none;
-  color: white;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-.navbar button:hover {
-  background: #00ffcc;
-  color: black;
-}
+.nav-links span{margin-left:20px;cursor:pointer;opacity:.7}
+.nav-links span:hover{opacity:1}
 
 /* SECTIONS */
-.section {
-  display: none;
-  padding: 20px;
+section{display:none;min-height:100vh;padding-top:100px}
+section.active{display:block;animation:fade .4s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.hero{text-align:center;margin-top:120px}
+.hero h1{font-size:60px}
+.hero span{text-decoration:underline}
+.hero button{margin-top:20px;padding:12px 20px;border:none;border-radius:10px;background:white;color:black;cursor:pointer}
+
+/* SCRIPTS */
+.container{
+  padding:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:25px;
 }
 
-.active {
-  display: block;
+.card{
+  background:#111;
+  border-radius:15px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.1);
+}
+.card img{width:100%;height:170px;object-fit:cover}
+.card-content{padding:15px}
+
+.desc{
+  font-size:11px;
+  color:#aaa;
+  word-break:break-all;
 }
 
-/* CARDS */
-.card {
-  background: #1f1f1f;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid #2c2c2c;
+.long-desc{
+  font-size:11px;
+  color:#777;
 }
 
-.title {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 6px;
+.copy-btn{
+  width:100%;
+  margin-top:10px;
+  padding:8px;
+  border:none;
+  border-radius:8px;
+  background:white;
+  color:black;
+  cursor:pointer;
 }
 
-.badge {
-  font-size: 12px;
-  color: #00ffcc;
-  margin-bottom: 8px;
+/* SEARCH */
+.search{
+  margin:20px auto;
+  display:block;
+  width:80%;
+  max-width:400px;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  background:#111;
+  color:white;
 }
 
-.small {
-  font-size: 13px;
-  color: #cfcfcf;
+.coming{
+  text-align:center;
+  font-size:35px;
+  padding:50px;
 }
 </style>
-
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <button onclick="show('home')">Home</button>
-  <button onclick="show('scripts')">Scripts Hub</button>
-  <button onclick="show('executors')">Executors</button>
-</div>
+<canvas id="grid"></canvas>
+
+<nav>
+  <div>ScriptNow</div>
+  <div class="nav-links">
+    <span onclick="showSection('home')">Home</span>
+    <span onclick="showSection('scripts')">Scripts</span>
+    <span onclick="showSection('about')">About</span>
+  </div>
+</nav>
 
 <!-- HOME -->
-<div id="home" class="section active">
-  <h2>Welcome 👋</h2>
-  <p class="small">
-    A clean Roblox scripting hub UI for learning, testing ideas, and organizing script resources.
-  </p>
-
-  <div class="card">
-    <div class="title">About This Site</div>
-    <div class="small">
-      This is a simple navigation-based dashboard layout for Roblox scripting topics, UI practice, and development learning.
-    </div>
+<section id="home" class="active">
+  <div class="hero">
+    <h1>Made with Elite <br><span>Power</span></h1>
+    <p>Premium Roblox Script Hub</p>
+    <p>Created in 2026</p>
+    <button onclick="showSection('scripts')">Take me Back</button>
   </div>
+</section>
+
+<!-- SCRIPTS -->
+<section id="scripts">
+<input class="search" id="search" placeholder="Search..." onkeyup="searchScripts()">
+
+<div class="container">
+
+<!-- Infinite Yield -->
+<div class="card">
+<img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
+<div class="card-content">
+<h3>Infinite Yield</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()</div>
+<div class="long-desc">Supported: Universal</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy Script</button>
+</div></div>
+
+<!-- HoHo -->
+<div class="card">
+<img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
+<div class="card-content">
+<h3>HoHo Hub</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
+<div class="long-desc">Supported: Multiple Games</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy Script</button>
+</div></div>
+
+<!-- Quantum -->
+<div class="card">
+<img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
+<div class="card-content">
+<h3>Quantum Onyx</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()</div>
+<div class="long-desc">Supported: Blox Fruits</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua`))()')">Copy Script</button>
+</div></div>
+
+<!-- NullFire -->
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1765399635373.png">
+<div class="card-content">
+<h3>NullFire</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()</div>
+<div class="long-desc">Supported: Doors, NDS</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua`))()')">Copy Script</button>
+</div></div>
+
+<!-- Moondeity -->
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1753093706828.png">
+<div class="card-content">
+<h3>Moondeity Hub</h3>
+<div class="desc">loadstring(game:HttpGet("https://moondiety.com/loader"))()</div>
+<div class="long-desc">Supported: Multiple Games</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://moondiety.com/loader`))()')">Copy Script</button>
+</div></div>
+
+<!-- Deluxed -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
+<div class="card-content">
+<h3>Deluxed Hub</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua",true))()</div>
+<div class="long-desc">Supported: Dandys World</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua`,true))()')">Copy Script</button>
+</div></div>
+
+<!-- Dropkick -->
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
+<div class="card-content">
+<h3>Dropkick Fling</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua"))()</div>
+<div class="long-desc">Supported: Universal</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua`))()')">Copy Script</button>
+</div></div>
+
 </div>
 
-<!-- SCRIPTS HUB -->
-<div id="scripts" class="section">
-  <h2>Scripts Hub</h2>
+<div class="coming">More Scripts Coming Soon.</div>
+</section>
 
-  <div class="card">
-    <div class="title">Movement System Pack</div>
-    <div class="badge">Category: Gameplay Mechanics</div>
-    <div class="small">
-      Includes experimental movement ideas like sprinting, jumping physics tweaks, and camera smoothing.
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="title">Visual UI Experiments</div>
-    <div class="badge">Category: UI / Effects</div>
-    <div class="small">
-      HUD layouts, overlays, and UI animations for Roblox Studio learning projects.
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="title">Game Utility Scripts</div>
-    <div class="badge">Category: Tools</div>
-    <div class="small">
-      Quality-of-life scripts for testing and improving gameplay mechanics inside Studio.
-    </div>
-  </div>
+<!-- ABOUT -->
+<section id="about">
+<div class="hero">
+<h1>About</h1>
+<p>This is a premium Roblox script hub.</p>
+<p>Owner: @Mybrocrashedout</p>
 </div>
-
-<!-- EXECUTORS -->
-<div id="executors" class="section">
-  <h2>Executors</h2>
-
-  <div class="card">
-    <div class="title">Development Environments</div>
-    <div class="badge">Safe Category</div>
-    <div class="small">
-      This section is for scripting environments, editors, and tools used for learning Lua and Roblox development.
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="title">Roblox Studio</div>
-    <div class="badge">Official Tool</div>
-    <div class="small">
-      The main platform for building Roblox games, testing scripts, and creating experiences.
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="title">Lua Practice Tools</div>
-    <div class="badge">Learning</div>
-    <div class="small">
-      Use safe Lua playgrounds and coding environments to practice scripting concepts.
-    </div>
-  </div>
-</div>
+</section>
 
 <script>
-function show(id) {
-  let sections = document.querySelectorAll('.section');
-  sections.forEach(sec => sec.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function showSection(id){
+document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
+document.getElementById(id).classList.add('active')
+}
+
+function copyScriptText(text){
+navigator.clipboard.writeText(text)
+alert('Copied!')
+}
+
+function searchScripts(){
+let input=document.getElementById('search').value.toLowerCase()
+document.querySelectorAll('.card').forEach(card=>{
+card.style.display=card.innerText.toLowerCase().includes(input)?'block':'none'
+})
 }
 </script>
 
