@@ -4,38 +4,106 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ScriptNow</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#000;color:#fff;overflow-x:hidden}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
 
-canvas{position:fixed;inset:0;pointer-events:none}
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
 
-/* NAVBAR */
+/* ✨ GRID BACKGROUND */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:0.4;
+}
+
+/* ✨ NAVBAR GLASS EFFECT */
 nav{
   position:fixed;
-  top:0;width:100%;
-  display:flex;justify-content:space-between;
-  padding:20px 40px;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(10px);
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:18px 40px;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,255,255,0.1);
   z-index:10;
 }
-.nav-links span{margin-left:20px;cursor:pointer;opacity:.7}
-.nav-links span:hover{opacity:1}
 
-/* SECTIONS */
-section{display:none;min-height:100vh;padding-top:100px}
-section.active{display:block;animation:fade .4s}
-@keyframes fade{from{opacity:0}to{opacity:1}}
+.nav-links span{
+  margin-left:20px;
+  cursor:pointer;
+  opacity:.7;
+  transition:0.3s;
+}
 
-.hero{text-align:center;margin-top:120px}
-.hero h1{font-size:60px}
-.hero span{text-decoration:underline}
-.hero button{margin-top:20px;padding:12px 20px;border:none;border-radius:10px;background:white;color:black;cursor:pointer}
+.nav-links span:hover{
+  opacity:1;
+  color:#00ffcc;
+}
 
-/* SCRIPTS */
+/* ✨ SECTIONS ANIMATION */
+section{
+  display:none;
+  min-height:100vh;
+  padding-top:100px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:0.5s ease;
+}
+
+section.active{
+  display:block;
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ✨ HERO */
+.hero{
+  text-align:center;
+  margin-top:120px;
+}
+
+.hero h1{
+  font-size:60px;
+  animation: glow 2s infinite alternate;
+}
+
+.hero span{
+  text-decoration:underline;
+  color:#00ffcc;
+}
+
+.hero button{
+  margin-top:20px;
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background:white;
+  color:black;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.hero button:hover{
+  background:#00ffcc;
+  box-shadow:0 0 20px rgba(0,255,204,0.4);
+}
+
+/* ✨ CARD GRID */
 .container{
   padding:40px;
   display:grid;
@@ -48,14 +116,28 @@ section.active{display:block;animation:fade .4s}
   border-radius:15px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,0.1);
+  transition:0.3s;
 }
-.card img{width:100%;height:170px;object-fit:cover}
-.card-content{padding:15px}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 25px rgba(255,255,255,0.08);
+  border-color:rgba(0,255,204,0.3);
+}
+
+.card img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:15px;
+}
 
 .desc{
   font-size:11px;
   color:#aaa;
-  word-break:break-all;
 }
 
 .long-desc{
@@ -72,9 +154,15 @@ section.active{display:block;animation:fade .4s}
   background:white;
   color:black;
   cursor:pointer;
+  transition:0.3s;
 }
 
-/* SEARCH */
+.copy-btn:hover{
+  background:#00ffcc;
+  box-shadow:0 0 15px rgba(0,255,204,0.4);
+}
+
+/* ✨ SEARCH */
 .search{
   margin:20px auto;
   display:block;
@@ -85,12 +173,24 @@ section.active{display:block;animation:fade .4s}
   border:none;
   background:#111;
   color:white;
+  outline:none;
+}
+
+.search:focus{
+  box-shadow:0 0 10px rgba(0,255,204,0.3);
+}
+
+/* ✨ ANIMATION */
+@keyframes glow{
+  from{text-shadow:0 0 10px #00ffcc;}
+  to{text-shadow:0 0 25px #00ffcc;}
 }
 
 .coming{
   text-align:center;
-  font-size:35px;
+  font-size:30px;
   padding:50px;
+  color:#888;
 }
 </style>
 </head>
@@ -113,125 +213,109 @@ section.active{display:block;animation:fade .4s}
   <div class="hero">
     <h1>Made with Elite <br><span>Power</span></h1>
     <p>Premium Roblox Script Hub</p>
-    <p>Created in 2026</p>
-    <button onclick="showSection('scripts')">Take me Back</button>
+    <button onclick="showSection('scripts')">Explore Scripts</button>
   </div>
 </section>
 
 <!-- SCRIPTS -->
 <section id="scripts">
-<input class="search" id="search" placeholder="Search..." onkeyup="searchScripts()">
+<input class="search" id="search" placeholder="Search scripts..." onkeyup="searchScripts()">
 
 <div class="container">
 
-<!-- Infinite Yield -->
+<!-- CARD -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
 <div class="card-content">
 <h3>Infinite Yield</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()</div>
-<div class="long-desc">Supported: Universal</div>
+<div class="desc">Universal Script</div>
 <div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy Script</button>
-</div></div>
+</div>
+</div>
 
-<!-- HoHo -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
 <div class="card-content">
 <h3>HoHo Hub</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
-<div class="long-desc">Supported: Multiple Games</div>
+<div class="desc">Multi Game Support</div>
 <div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy Script</button>
-</div></div>
-
-<!-- Quantum -->
-<div class="card">
-<img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
-<div class="card-content">
-<h3>Quantum Onyx</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()</div>
-<div class="long-desc">Supported: Blox Fruits</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua`))()')">Copy Script</button>
-</div></div>
-
-<!-- NullFire -->
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1765399635373.png">
-<div class="card-content">
-<h3>NullFire</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()</div>
-<div class="long-desc">Supported: Doors, NDS</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua`))()')">Copy Script</button>
-</div></div>
-
-<!-- Moondeity -->
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1753093706828.png">
-<div class="card-content">
-<h3>Moondeity Hub</h3>
-<div class="desc">loadstring(game:HttpGet("https://moondiety.com/loader"))()</div>
-<div class="long-desc">Supported: Multiple Games</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://moondiety.com/loader`))()')">Copy Script</button>
-</div></div>
-
-<!-- Deluxed -->
-<div class="card">
-<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
-<div class="card-content">
-<h3>Deluxed Hub</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua",true))()</div>
-<div class="long-desc">Supported: Dandys World</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua`,true))()')">Copy Script</button>
-</div></div>
-
-<!-- Dropkick -->
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
-<div class="card-content">
-<h3>Dropkick Fling</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua"))()</div>
-<div class="long-desc">Supported: Universal</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua`))()')">Copy Script</button>
-</div></div>
+</div>
+</div>
 
 </div>
 
-<div class="coming">More Scripts Coming Soon.</div>
+<div class="coming">More Scripts Coming Soon...</div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>This is a premium Roblox script hub.</p>
-<p>Owner: @Mybrocrashedout</p>
+<p>ScriptNow UI Upgrade Version</p>
+<p>Built for learning & UI practice</p>
 </div>
 </section>
 
 <script>
+
+/* SECTION SWITCH */
 function showSection(id){
-document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
-document.getElementById(id).classList.add('active')
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
+  document.getElementById(id).classList.add('active')
 }
 
+/* COPY */
 function copyScriptText(text){
-navigator.clipboard.writeText(text)
-alert('Copied!')
+  navigator.clipboard.writeText(text)
+  alert("Copied!")
 }
 
+/* SEARCH */
 function searchScripts(){
-let input=document.getElementById('search').value.toLowerCase()
-document.querySelectorAll('.card').forEach(card=>{
-card.style.display=card.innerText.toLowerCase().includes(input)?'block':'none'
-})
+  let input=document.getElementById('search').value.toLowerCase()
+  document.querySelectorAll('.card').forEach(card=>{
+    card.style.display=card.innerText.toLowerCase().includes(input)
+    ?'block':'none'
+  })
 }
+
+/* ✨ MOVING GRID BACKGROUND */
+const canvas=document.getElementById("grid");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  ctx.strokeStyle="rgba(255,255,255,0.05)";
+  let gap=40;
+
+  for(let x=0;x<canvas.width;x+=gap){
+    ctx.beginPath();
+    ctx.moveTo(x,0);
+    ctx.lineTo(x,canvas.height);
+    ctx.stroke();
+  }
+
+  for(let y=0;y<canvas.height;y+=gap){
+    ctx.beginPath();
+    ctx.moveTo(0,y);
+    ctx.lineTo(canvas.width,y);
+    ctx.stroke();
+  }
+
+  requestAnimationFrame(draw);
+}
+draw();
+
 </script>
 
 </body>
