@@ -237,6 +237,147 @@ status:"Operational"
 }
 ];
 
+  <section id="executors">
+
+<div class="hero">
+<h1>Executors</h1>
+<p>Mobile & Windows Executors</p>
+</div>
+
+<div class="wrapper">
+<div class="container">
+
+<!-- MOBILE -->
+<div style="grid-column:1/-1;color:#aaa;margin:10px 0;">MOBILE EXECS</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Delta</h3>
+<div class="meta">Type: Key</div>
+<div class="meta">Detection: Undetected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Updated</div>
+<button class="copy-btn" onclick="window.open('https://deltaexploits.gg/')">Take me There</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Cryptic</h3>
+<div class="meta">Type: Key</div>
+<div class="meta">Detection: Undetected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Not Updated</div>
+<button class="copy-btn" onclick="window.open('https://getcryptic.net/')">Take me There</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Vega X</h3>
+<div class="meta">Type: Key</div>
+<div class="meta">Detection: Undetected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Updated</div>
+<button class="copy-btn" onclick="window.open('https://www.vegax.gg/')">Take me There</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Codex</h3>
+<div class="meta">Type: Keyless</div>
+<div class="meta">Detection: Undetected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Not Updated</div>
+<button class="copy-btn" onclick="window.open('https://codex.lol/')">Take me There</button>
+</div>
+</div>
+
+<!-- WINDOWS -->
+<div style="grid-column:1/-1;color:#aaa;margin:20px 0;">WINDOWS EXECUTORS</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Volt</h3>
+<div class="meta">Type: $5.99 Weekly</div>
+<div class="meta">Detection: Undetected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Updated</div>
+<button class="copy-btn" onclick="window.open('https://volt.bz/')">Take me There</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Potassium</h3>
+<div class="meta">Type: $22.99 Lifetime</div>
+<div class="meta">Detection: Undetected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Updated</div>
+<button class="copy-btn" onclick="window.open('https://www.potassium.pro/')">Take me There</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Wave</h3>
+<div class="meta">Type: $5.99 Weekly</div>
+<div class="meta">Detection: Undetected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Not Updated</div>
+<button class="copy-btn" onclick="window.open('https://getwave.gg/')">Take me There</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Synapse Z</h3>
+<div class="meta">Type: $3.99 Weekly</div>
+<div class="meta">Detection: Detected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Updated</div>
+<button class="copy-btn" onclick="window.open('https://z.synapse.do/')">Take me There</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Xeno</h3>
+<div class="meta">Type: Keyless</div>
+<div class="meta">Detection: Undetected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Updated</div>
+<button class="copy-btn" onclick="window.open('https://xeno.onl/')">Take me There</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Solara</h3>
+<div class="meta">Type: Keyless</div>
+<div class="meta">Detection: Undetected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Updated</div>
+<button class="copy-btn" onclick="window.open('https://getsolara.dev/')">Take me There</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-content">
+<h3>Madium</h3>
+<div class="meta">Type: Keyless</div>
+<div class="meta">Detection: Undetected</div>
+<div class="meta">Status: Operational</div>
+<div class="meta">Updates: Updated</div>
+<button class="copy-btn" onclick="window.open('https://work.ink/2nLR/madium-install')">Take me There</button>
+</div>
+</div>
+
+</div>
+</div>
+
+</section>
 /* RENDER */
 function render(){
 let home=document.getElementById("homeScripts");
@@ -265,7 +406,7 @@ function showSection(id){
 document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
 document.getElementById(id).classList.add('active')
 }
-
+<span onclick="showSection('executors')">Executors</span>
 /* COPY */
 function copyScriptText(t){
 navigator.clipboard.writeText(t)
