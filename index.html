@@ -85,7 +85,7 @@ section.active{
   display:block;
 }
 
-/* HERO */
+/* HOME */
 .hero{
   text-align:center;
   margin-top:120px;
@@ -187,6 +187,7 @@ section.active{
 <canvas id="cubes"></canvas>
 <div class="lightning" id="lightning"></div>
 
+<!-- NAV -->
 <nav>
   <div>ScriptNow</div>
   <div class="nav-links">
@@ -206,7 +207,7 @@ section.active{
     <button onclick="show('scripts')">Explore Scripts</button>
   </div>
 
-  <!-- FEATURED HOME SCRIPTS -->
+  <!-- HOMEPAGE FEATURED -->
   <div class="container">
 
     <div class="card">
@@ -214,7 +215,7 @@ section.active{
       <div class="card-content">
         <h3>Infinite Yield</h3>
         <div class="desc">Universal Admin Script</div>
-        <div class="long-desc">Featured on Homepage</div>
+        <div class="long-desc">Featured Script</div>
         <button class="copy-btn" onclick="show('scripts')">Get Script Now</button>
       </div>
     </div>
@@ -224,21 +225,84 @@ section.active{
       <div class="card-content">
         <h3>Quantum Onyx</h3>
         <div class="desc">Blox Fruits Hub</div>
-        <div class="long-desc">Featured on Homepage</div>
+        <div class="long-desc">Featured Script</div>
         <button class="copy-btn" onclick="show('scripts')">Get Script Now</button>
       </div>
     </div>
 
   </div>
-
 </section>
 
-<!-- SCRIPTS (UNCHANGED) -->
+<!-- SCRIPTS (FULL RESTORED + FIXED) -->
 <section id="scripts">
+
 <input class="search" placeholder="Search..." onkeyup="search()">
 
 <div class="container">
-<!-- your existing scripts stay here unchanged -->
+
+<div class="card">
+<img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
+<div class="card-content">
+<h3>Infinite Yield</h3>
+<div class="desc">Universal Admin Script</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()`)">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
+<div class="card-content">
+<h3>HoHo Hub</h3>
+<div class="desc">Multi Game Hub</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()`)">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
+<div class="card-content">
+<h3>Quantum Onyx</h3>
+<div class="desc">Blox Fruits Hub</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua'))()`)">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1765399635373.png">
+<div class="card-content">
+<h3>NullFire</h3>
+<div class="desc">Doors / NDS Hub</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua'))()`)">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1753093706828.png">
+<div class="card-content">
+<h3>Moondeity Hub</h3>
+<div class="desc">Universal Hub</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://moondiety.com/loader'))()`)">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
+<div class="card-content">
+<h3>Deluxed Hub</h3>
+<div class="desc">Dandys World</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua', true))()`)">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
+<div class="card-content">
+<h3>Dropkick Fling</h3>
+<div class="desc">Universal Fling</div>
+<div class="long-desc">Status: Operational</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua'))()`)">Copy</button>
+</div></div>
+
 </div>
 </section>
 
@@ -246,7 +310,7 @@ section.active{
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>ScriptNow UI</p>
+<p>ScriptNow Final Stable Version</p>
 </div>
 </section>
 
@@ -257,6 +321,10 @@ function show(id){
   document.getElementById(id).classList.add('active')
 }
 
+function copy(text){
+  navigator.clipboard.writeText(text)
+}
+
 function search(){
   let v=document.querySelector('.search').value.toLowerCase()
   document.querySelectorAll('.card').forEach(c=>{
@@ -264,14 +332,14 @@ function search(){
   })
 }
 
+/* cursor */
 const l=document.getElementById("lightning");
-
 document.addEventListener("mousemove",(e)=>{
   l.style.left=e.clientX+"px";
   l.style.top=e.clientY+"px";
 });
 
-/* background grid */
+/* background */
 const bg=document.getElementById("bg");
 const ctx=bg.getContext("2d");
 
