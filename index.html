@@ -10,64 +10,140 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 
-body{background:#000;color:#fff;overflow-x:hidden}
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* LIGHT FOLLOW */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle 220px at var(--x,50%) var(--y,50%), rgba(0,255,255,0.08), transparent 60%);
+  pointer-events:none;
+}
+
+/* GRID */
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+}
 
 /* NAV */
 nav{
-  position:fixed;top:0;width:100%;
-  display:flex;justify-content:space-between;
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
   padding:20px 40px;
   background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  z-index:10;
 }
 
 .nav-links span{
-  margin-left:20px;cursor:pointer;font-weight:600;
+  margin-left:20px;
+  cursor:pointer;
+  font-weight:600;
 }
 
-/* SECTIONS */
-section{display:none;min-height:100vh;padding-top:120px}
+/* SECTION */
+section{
+  display:none;
+  min-height:100vh;
+  padding-top:120px;
+}
 section.active{display:block}
 
 /* HERO */
-.hero{text-align:center;padding:80px}
-.hero h1{font-size:50px;font-weight:900}
+.hero{
+  text-align:center;
+  padding:80px 20px;
+}
+.hero h1{
+  font-size:55px;
+  font-weight:900;
+}
+.hero p{
+  color:#bbb;
+}
 
-/* GRID */
+/* GRID CARDS */
 .container{
+  padding:20px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;padding:20px;
+  gap:20px;
 }
 
-/* CARD */
 .card{
-  background:#111;
-  border-radius:12px;
+  background:rgba(255,255,255,0.05);
+  border-radius:15px;
   overflow:hidden;
-  border:1px solid #222;
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 25px rgba(0,255,255,0.35);
+  border-color:#0ff;
 }
 
-.card img{width:100%;height:150px;object-fit:cover}
-.card-content{padding:10px}
+.card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+}
 
-.desc{font-size:11px;color:#ccc;word-break:break-all}
-.meta{font-size:12px;color:#aaa;margin-top:4px}
+.card-content{padding:12px}
+
+.desc{
+  font-size:11px;
+  color:#ccc;
+  word-break:break-all;
+}
+
+.meta{
+  font-size:12px;
+  color:#aaa;
+  margin-top:4px;
+}
 
 .copy-btn{
-  width:100%;margin-top:8px;
-  padding:8px;border:none;border-radius:6px;
-  background:white;color:black;font-weight:700;
+  width:100%;
+  margin-top:10px;
+  padding:8px;
+  border:none;
+  border-radius:8px;
+  background:white;
+  color:black;
+  font-weight:700;
+  cursor:pointer;
 }
 
+/* SEARCH */
 .search{
-  margin:20px auto;display:block;width:80%;
-  max-width:300px;padding:10px;
-  background:#111;border:none;color:white;border-radius:10px;
+  margin:20px auto;
+  display:block;
+  width:80%;
+  max-width:350px;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  background:#111;
+  color:white;
 }
 </style>
 </head>
 
 <body>
+
+<canvas id="grid"></canvas>
 
 <nav>
 <div style="font-weight:900;">ScriptNow</div>
@@ -89,81 +165,13 @@ Made with Elite <span style="text-decoration:underline;color:#0ff;">Power</span>
 </div>
 </div>
 
-<div class="container">
-
-<!-- Infinite -->
-<div class="card">
-<img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
-<div class="card-content">
-<h3>Infinite Yield</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy</button>
-</div></div>
-
-<!-- HoHo -->
-<div class="card">
-<img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
-<div class="card-content">
-<h3>HoHo Hub</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy</button>
-</div></div>
-
-</div>
+<div class="container" id="homeScripts"></div>
 </section>
 
 <!-- SCRIPTS -->
 <section id="scripts">
-
 <input class="search" placeholder="Search..." onkeyup="searchScripts(this)">
-
-<div class="container">
-
-<!-- Infinite -->
-<div class="card">
-<img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
-<div class="card-content">
-<h3>Infinite Yield</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()</div>
-<div class="meta">Supported: Universal</div>
-<div class="meta">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy</button>
-</div></div>
-
-<!-- HoHo -->
-<div class="card">
-<img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
-<div class="card-content">
-<h3>HoHo Hub</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
-<div class="meta">Supported: Multi</div>
-<div class="meta">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy</button>
-</div></div>
-
-<!-- Quantum -->
-<div class="card">
-<img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
-<div class="card-content">
-<h3>Quantum Onyx</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua"))()</div>
-<div class="meta">Supported: Blox Fruits</div>
-<div class="meta">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua`))()')">Copy</button>
-</div></div>
-
-<!-- NullFire -->
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1765399635373.png">
-<div class="card-content">
-<h3>NullFire</h3>
-<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()</div>
-<div class="meta">Supported: Doors/NDS</div>
-<div class="meta">Status: Operational</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua`))()')">Copy</button>
-</div></div>
-
-</div>
+<div class="container" id="allScripts"></div>
 </section>
 
 <!-- ABOUT -->
@@ -175,22 +183,132 @@ Made with Elite <span style="text-decoration:underline;color:#0ff;">Power</span>
 </section>
 
 <script>
+
+/* 🔥 SCRIPT DATA (ONLY ONE SOURCE = NO MISSING BUG EVER AGAIN) */
+const scripts = [
+{
+name:"Infinite Yield",
+img:"https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg",
+load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()`,
+supported:"Universal",
+status:"Operational"
+},
+{
+name:"HoHo Hub",
+img:"https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg",
+load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()`,
+supported:"Multi",
+status:"Operational"
+},
+{
+name:"Quantum Onyx",
+img:"https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg",
+load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua"))()`,
+supported:"Blox Fruits",
+status:"Operational"
+},
+{
+name:"NullFire",
+img:"https://scriptblox.com/images/script/0-1765399635373.png",
+load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()`,
+supported:"Doors/NDS",
+status:"Operational"
+},
+{
+name:"Moondeity Hub",
+img:"https://scriptblox.com/images/script/0-1753093706828.png",
+load:`loadstring(game:HttpGet("https://moondiety.com/loader"))()`,
+supported:"Multi",
+status:"Operational"
+},
+{
+name:"Deluxed Hub",
+img:"https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186",
+load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua",true))()`,
+supported:"Dandys World",
+status:"Operational"
+},
+{
+name:"Dropkick Fling",
+img:"https://scriptblox.com/images/script/0-1776041891249.jpg",
+load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua"))()`,
+supported:"Universal",
+status:"Operational"
+}
+];
+
+/* RENDER */
+function render(){
+let home=document.getElementById("homeScripts");
+let all=document.getElementById("allScripts");
+
+scripts.forEach(s=>{
+let card=`
+<div class="card">
+<img src="${s.img}">
+<div class="card-content">
+<h3>${s.name}</h3>
+<div class="desc">${s.load}</div>
+<div class="meta">Supported: ${s.supported}</div>
+<div class="meta">Status: ${s.status}</div>
+<button class="copy-btn" onclick='copyScriptText(\`${s.load}\`)'>Copy Script</button>
+</div></div>`;
+
+home.innerHTML+=card;
+all.innerHTML+=card;
+});
+}
+render();
+
+/* NAV */
 function showSection(id){
 document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
 document.getElementById(id).classList.add('active')
 }
 
-function copyScriptText(text){
-navigator.clipboard.writeText(text)
-alert('Copied!')
+/* COPY */
+function copyScriptText(t){
+navigator.clipboard.writeText(t)
+alert("Copied!")
 }
 
+/* SEARCH */
 function searchScripts(input){
 let val=input.value.toLowerCase()
-document.querySelectorAll('#scripts .card').forEach(card=>{
+document.querySelectorAll('#allScripts .card').forEach(card=>{
 card.style.display = card.innerText.toLowerCase().includes(val) ? "block":"none"
 })
 }
+
+/* LIGHT */
+window.addEventListener('mousemove',e=>{
+document.body.style.setProperty('--x', e.clientX+'px')
+document.body.style.setProperty('--y', e.clientY+'px')
+})
+
+/* GRID */
+const c=document.getElementById('grid')
+const ctx=c.getContext('2d')
+c.width=innerWidth
+c.height=innerHeight
+let m={x:0,y:0}
+addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY})
+
+function draw(){
+ctx.clearRect(0,0,c.width,c.height)
+for(let x=0;x<c.width;x+=40){
+for(let y=0;y<c.height;y+=40){
+let d=Math.hypot(m.x-x,m.y-y)
+let o=Math.max(0,1-d/200)
+if(o>0){
+ctx.fillStyle=`rgba(0,255,255,${o*0.15})`
+ctx.fillRect(x,y,38,38)
+}
+}}
+requestAnimationFrame(draw)
+}
+draw()
+
 </script>
 
 </body>
