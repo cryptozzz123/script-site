@@ -17,7 +17,7 @@ body{
   overflow-y:auto;
 }
 
-/* LIGHT EFFECT */
+/* CURSOR LIGHT */
 body::before{
   content:"";
   position:fixed;
@@ -26,7 +26,7 @@ body::before{
   pointer-events:none;
 }
 
-/* GRID */
+/* GRID BLOCK EFFECT */
 canvas{
   position:fixed;
   inset:0;
@@ -45,10 +45,11 @@ nav{
   backdrop-filter:blur(10px);
   z-index:10;
 }
+
 .nav-links span{
   margin-left:20px;
   cursor:pointer;
-  opacity:0.7;
+  opacity:.7;
 }
 .nav-links span:hover{opacity:1}
 
@@ -64,24 +65,23 @@ section.active{
 }
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
-/* STYLISH TEXT */
-.title{
+/* HERO */
+.hero{
+  text-align:center;
+  padding:140px 20px;
+}
+
+.hero h1{
   font-size:60px;
   font-weight:900;
   background:linear-gradient(90deg,#0ff,#00aaff,#0ff);
   -webkit-background-clip:text;
   color:transparent;
 }
-.text{
-  color:#bbb;
-  margin-top:10px;
-  font-size:18px;
-}
 
-/* HERO */
-.hero{
-  text-align:center;
-  padding:140px 20px;
+.hero p{
+  margin-top:10px;
+  color:#bbb;
 }
 
 /* SCRIPTS */
@@ -103,10 +103,14 @@ section.active{
 .card:hover{
   transform:translateY(-6px);
   border-color:#0ff;
-  box-shadow:0 0 30px rgba(0,255,255,0.2);
+  box-shadow:0 0 25px rgba(0,255,255,0.2);
 }
 
-.card img{width:100%;height:170px;object-fit:cover}
+.card img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
 
 .card-content{padding:15px}
 
@@ -146,7 +150,7 @@ section.active{
   color:white;
 }
 
-/* COMING */
+/* COMING TEXT */
 .coming{
   text-align:center;
   font-size:42px;
@@ -181,9 +185,9 @@ section.active{
 <!-- HOME -->
 <section id="home" class="active">
 <div class="hero">
-<h1 class="title">ScriptNow</h1>
-<p class="text">A premium Roblox script hub built for performance, smooth UI and clean design.</p>
-<p class="text">Created in 2026.</p>
+<h1>ScriptNow</h1>
+<p>A premium Roblox script hub with smooth UI and powerful scripts.</p>
+<p>Created in 2026</p>
 </div>
 </section>
 
@@ -200,8 +204,8 @@ section.active{
 <div class="card-content">
 <h3>Infinite Yield</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()</div>
-<div class="long-desc">Most popular admin command script with powerful controls.</div>
-<div class="long-desc">Supported: Universal</div>
+<div class="long-desc">Most famous admin command script with full control features.</div>
+<div class="long-desc">Supported: Universal (All)</div>
 <div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy Script</button>
 </div></div>
@@ -212,9 +216,9 @@ section.active{
 <div class="card-content">
 <h3>HoHo Hub</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
-<div class="long-desc">Multi-game automation hub for efficiency.</div>
+<div class="long-desc">Multi-game automation hub with strong optimization.</div>
 <div class="long-desc">Status: Operational</div>
-<button class="copy-btn">Copy Script</button>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy Script</button>
 </div></div>
 
 <!-- Quantum -->
@@ -223,9 +227,9 @@ section.active{
 <div class="card-content">
 <h3>Quantum Onyx</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua"))()</div>
-<div class="long-desc">Fast farming and low lag performance script.</div>
+<div class="long-desc">Low lag farming focused script.</div>
 <div class="long-desc">Status: Operational</div>
-<button class="copy-btn">Copy Script</button>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua`))()')">Copy Script</button>
 </div></div>
 
 </div>
@@ -237,10 +241,9 @@ section.active{
 <!-- ABOUT -->
 <section id="about">
 <div class="hero">
-<h1 class="title">About</h1>
-<p class="text">ScriptNow is a modern Roblox script hub inspired by premium UI like Velocity.</p>
-<p class="text">Built for smooth experience and clean design.</p>
-<p class="text">Owner: @Mybrocrashedout</p>
+<h1>About</h1>
+<p>This is a premium Roblox script hub inspired by Velocity UI.</p>
+<p>Owner: @Mybrocrashedout</p>
 </div>
 </section>
 
@@ -262,13 +265,13 @@ card.style.display=card.innerText.toLowerCase().includes(input)?'block':'none'
 })
 }
 
-/* CURSOR LIGHT */
+/* LIGHT */
 window.addEventListener('mousemove',e=>{
 document.body.style.setProperty('--x', e.clientX+'px')
 document.body.style.setProperty('--y', e.clientY+'px')
 })
 
-/* GRID */
+/* GRID EFFECT */
 const canvas=document.getElementById('grid')
 const ctx=canvas.getContext('2d')
 canvas.width=innerWidth
@@ -288,9 +291,9 @@ for(let y=0;y<canvas.height;y+=size){
 let dx=mouse.x-x
 let dy=mouse.y-y
 let dist=Math.sqrt(dx*dx+dy*dy)
-let o=Math.max(0,1-dist/200)
-if(o>0){
-ctx.fillStyle=`rgba(0,255,255,${o*0.15})`
+let opacity=Math.max(0,1-dist/200)
+if(opacity>0){
+ctx.fillStyle=`rgba(0,255,255,${opacity*0.15})`
 ctx.fillRect(x,y,size-2,size-2)
 }
 }
