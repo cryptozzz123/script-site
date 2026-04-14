@@ -10,12 +10,27 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:#000;color:#fff;overflow-x:hidden}
 
-canvas{position:fixed;inset:0;pointer-events:none}
-
-/* NAVBAR */
-nav{
+/* CURSOR LIGHT */
+body::before{
+  content:"";
   position:fixed;
-  top:0;width:100%;
+  inset:0;
+  background:radial-gradient(circle 200px at var(--x,50%) var(--y,50%), rgba(0,255,255,0.08), transparent 60%);
+  pointer-events:none;
+  z-index:1;
+}
+
+/* GRID EFFECT */
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;width:100%;
   display:flex;justify-content:space-between;
   padding:20px 40px;
   background:rgba(0,0,0,0.6);
@@ -26,14 +41,34 @@ nav{
 .nav-links span:hover{opacity:1}
 
 /* SECTIONS */
-section{display:none;min-height:100vh;padding-top:100px}
-section.active{display:block;animation:fade .4s}
+section{
+  display:none;
+  min-height:100vh;
+  padding-top:100px;
+}
+section.active{
+  display:block;
+  animation:fade .4s;
+}
+
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
-.hero{text-align:center;margin-top:120px}
+/* HERO */
+.hero{
+  text-align:center;
+  padding:120px 20px;
+}
 .hero h1{font-size:60px}
 .hero span{text-decoration:underline}
-.hero button{margin-top:20px;padding:12px 20px;border:none;border-radius:10px;background:white;color:black;cursor:pointer}
+.hero button{
+  margin-top:20px;
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background:white;
+  color:black;
+  cursor:pointer;
+}
 
 /* SCRIPTS */
 .container{
@@ -44,11 +79,19 @@ section.active{display:block;animation:fade .4s}
 }
 
 .card{
-  background:#111;
+  background:rgba(255,255,255,0.03);
   border-radius:15px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  transition:.3s;
 }
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#0ff;
+  box-shadow:0 0 25px rgba(0,255,255,0.2);
+}
+
 .card img{width:100%;height:170px;object-fit:cover}
 .card-content{padding:15px}
 
@@ -56,11 +99,13 @@ section.active{display:block;animation:fade .4s}
   font-size:11px;
   color:#aaa;
   word-break:break-all;
+  margin-bottom:8px;
 }
 
 .long-desc{
   font-size:11px;
   color:#777;
+  margin-bottom:8px;
 }
 
 .copy-btn{
@@ -100,22 +145,22 @@ section.active{display:block;animation:fade .4s}
 <canvas id="grid"></canvas>
 
 <nav>
-  <div>ScriptNow</div>
-  <div class="nav-links">
-    <span onclick="showSection('home')">Home</span>
-    <span onclick="showSection('scripts')">Scripts</span>
-    <span onclick="showSection('about')">About</span>
-  </div>
+<div>ScriptNow</div>
+<div class="nav-links">
+<span onclick="showSection('home')">Home</span>
+<span onclick="showSection('scripts')">Scripts</span>
+<span onclick="showSection('about')">About</span>
+</div>
 </nav>
 
 <!-- HOME -->
 <section id="home" class="active">
-  <div class="hero">
-    <h1>Made with Elite <br><span>Power</span></h1>
-    <p>Premium Roblox Script Hub</p>
-    <p>Created in 2026</p>
-    <button onclick="showSection('scripts')">Take me Back</button>
-  </div>
+<div class="hero">
+<h1>Made with Elite <br><span>Power</span></h1>
+<p>This website is a premium Roblox script hub with powerful UI and smooth experience.</p>
+<p>Created in 2026.</p>
+<button onclick="showSection('scripts')">Take me Back</button>
+</div>
 </section>
 
 <!-- SCRIPTS -->
@@ -130,7 +175,8 @@ section.active{display:block;animation:fade .4s}
 <div class="card-content">
 <h3>Infinite Yield</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()</div>
-<div class="long-desc">Supported: Universal</div>
+<div class="long-desc">Infinite Yield is the most popular admin command script used across Roblox.</div>
+<div class="long-desc">Supported: Universal (All)</div>
 <div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy Script</button>
 </div></div>
@@ -141,6 +187,7 @@ section.active{display:block;animation:fade .4s}
 <div class="card-content">
 <h3>HoHo Hub</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
+<div class="long-desc">HoHo Hub automates gameplay across many Roblox games.</div>
 <div class="long-desc">Supported: Multiple Games</div>
 <div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy Script</button>
@@ -152,6 +199,7 @@ section.active{display:block;animation:fade .4s}
 <div class="card-content">
 <h3>Quantum Onyx</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()</div>
+<div class="long-desc">Quantum Onyx focuses on speed and low lag farming.</div>
 <div class="long-desc">Supported: Blox Fruits</div>
 <div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua`))()')">Copy Script</button>
@@ -163,6 +211,7 @@ section.active{display:block;animation:fade .4s}
 <div class="card-content">
 <h3>NullFire</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()</div>
+<div class="long-desc">NullFire provides visuals and automation for games like DOORS.</div>
 <div class="long-desc">Supported: Doors, NDS</div>
 <div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua`))()')">Copy Script</button>
@@ -174,6 +223,7 @@ section.active{display:block;animation:fade .4s}
 <div class="card-content">
 <h3>Moondeity Hub</h3>
 <div class="desc">loadstring(game:HttpGet("https://moondiety.com/loader"))()</div>
+<div class="long-desc">Moondeity Hub supports many popular Roblox games.</div>
 <div class="long-desc">Supported: Multiple Games</div>
 <div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://moondiety.com/loader`))()')">Copy Script</button>
@@ -185,6 +235,7 @@ section.active{display:block;animation:fade .4s}
 <div class="card-content">
 <h3>Deluxed Hub</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua",true))()</div>
+<div class="long-desc">Deluxed Hub focuses on Dandys World automation.</div>
 <div class="long-desc">Supported: Dandys World</div>
 <div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua`,true))()')">Copy Script</button>
@@ -196,6 +247,7 @@ section.active{display:block;animation:fade .4s}
 <div class="card-content">
 <h3>Dropkick Fling</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua"))()</div>
+<div class="long-desc">Dropkick Fling is a fun physics-based fling script.</div>
 <div class="long-desc">Supported: Universal</div>
 <div class="long-desc">Status: Operational</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua`))()')">Copy Script</button>
@@ -210,7 +262,7 @@ section.active{display:block;animation:fade .4s}
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>This is a premium Roblox script hub.</p>
+<p>This is a premium Roblox script hub inspired by Velocity UI.</p>
 <p>Owner: @Mybrocrashedout</p>
 </div>
 </section>
@@ -232,6 +284,43 @@ document.querySelectorAll('.card').forEach(card=>{
 card.style.display=card.innerText.toLowerCase().includes(input)?'block':'none'
 })
 }
+
+/* CURSOR LIGHT */
+window.addEventListener('mousemove',e=>{
+document.body.style.setProperty('--x', e.clientX+'px')
+document.body.style.setProperty('--y', e.clientY+'px')
+})
+
+/* GRID EFFECT */
+const canvas=document.getElementById('grid')
+const ctx=canvas.getContext('2d')
+canvas.width=innerWidth
+canvas.height=innerHeight
+
+let mouse={x:0,y:0}
+addEventListener('mousemove',e=>{
+mouse.x=e.clientX
+mouse.y=e.clientY
+})
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height)
+const size=40
+for(let x=0;x<canvas.width;x+=size){
+for(let y=0;y<canvas.height;y+=size){
+let dx=mouse.x-x
+let dy=mouse.y-y
+let dist=Math.sqrt(dx*dx+dy*dy)
+let opacity=Math.max(0,1-dist/200)
+if(opacity>0){
+ctx.fillStyle=`rgba(0,255,255,${opacity*0.15})`
+ctx.fillRect(x,y,size-2,size-2)
+}
+}
+}
+requestAnimationFrame(draw)
+}
+draw()
 </script>
 
 </body>
