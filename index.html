@@ -14,10 +14,9 @@ body{
   background:#000;
   color:#fff;
   overflow-x:hidden;
-  overflow-y:auto;
 }
 
-/* CURSOR LIGHT */
+/* LIGHT */
 body::before{
   content:"";
   position:fixed;
@@ -26,7 +25,7 @@ body::before{
   pointer-events:none;
 }
 
-/* GRID BLOCK EFFECT */
+/* GRID */
 canvas{
   position:fixed;
   inset:0;
@@ -57,22 +56,23 @@ nav{
 section{
   display:none;
   min-height:100vh;
-  padding-top:100px;
+  padding-top:120px;
 }
 section.active{
   display:block;
   animation:fade .4s;
 }
+
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:140px 20px;
+  padding:80px 20px;
 }
 
 .hero h1{
-  font-size:60px;
+  font-size:50px;
   font-weight:900;
   background:linear-gradient(90deg,#0ff,#00aaff,#0ff);
   -webkit-background-clip:text;
@@ -84,16 +84,22 @@ section.active{
   color:#bbb;
 }
 
+/* WRAPPER (THIS FIXES BIG UI) */
+.wrapper{
+  max-width:1100px;
+  margin:auto;
+}
+
 /* SCRIPTS */
 .container{
-  padding:40px;
+  padding:20px;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:25px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
 }
 
 .card{
-  background:rgba(255,255,255,0.03);
+  background:rgba(255,255,255,0.04);
   border-radius:15px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,0.1);
@@ -101,21 +107,21 @@ section.active{
   transition:.3s;
 }
 .card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-5px);
   border-color:#0ff;
-  box-shadow:0 0 25px rgba(0,255,255,0.2);
+  box-shadow:0 0 20px rgba(0,255,255,0.2);
 }
 
 .card img{
   width:100%;
-  height:170px;
+  height:150px;
   object-fit:cover;
 }
 
-.card-content{padding:15px}
+.card-content{padding:12px}
 
 .desc{
-  font-size:11px;
+  font-size:10px;
   color:#aaa;
   word-break:break-all;
 }
@@ -128,8 +134,8 @@ section.active{
 
 .copy-btn{
   width:100%;
-  margin-top:10px;
-  padding:8px;
+  margin-top:8px;
+  padding:7px;
   border:none;
   border-radius:8px;
   background:white;
@@ -142,29 +148,23 @@ section.active{
   margin:20px auto;
   display:block;
   width:80%;
-  max-width:400px;
-  padding:10px;
+  max-width:350px;
+  padding:8px;
   border-radius:10px;
   border:none;
   background:#111;
   color:white;
 }
 
-/* COMING TEXT */
+/* COMING */
 .coming{
   text-align:center;
-  font-size:42px;
+  font-size:30px;
   font-weight:900;
-  padding:80px;
+  padding:50px;
   background:linear-gradient(90deg,#0ff,#00aaff,#0ff);
   -webkit-background-clip:text;
   color:transparent;
-  animation:glow 2s infinite alternate;
-}
-
-@keyframes glow{
-  from{filter:blur(0px)}
-  to{filter:blur(2px)}
 }
 </style>
 </head>
@@ -186,7 +186,7 @@ section.active{
 <section id="home" class="active">
 <div class="hero">
 <h1>ScriptNow</h1>
-<p>A premium Roblox script hub with smooth UI and powerful scripts.</p>
+<p>Premium Roblox script hub with smooth UI & powerful scripts.</p>
 <p>Created in 2026</p>
 </div>
 </section>
@@ -196,6 +196,7 @@ section.active{
 
 <input class="search" id="search" placeholder="Search..." onkeyup="searchScripts()">
 
+<div class="wrapper">
 <div class="container">
 
 <!-- Infinite Yield -->
@@ -204,9 +205,7 @@ section.active{
 <div class="card-content">
 <h3>Infinite Yield</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()</div>
-<div class="long-desc">Most famous admin command script with full control features.</div>
-<div class="long-desc">Supported: Universal (All)</div>
-<div class="long-desc">Status: Operational</div>
+<div class="long-desc">Admin command script.</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy Script</button>
 </div></div>
 
@@ -216,8 +215,7 @@ section.active{
 <div class="card-content">
 <h3>HoHo Hub</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
-<div class="long-desc">Multi-game automation hub with strong optimization.</div>
-<div class="long-desc">Status: Operational</div>
+<div class="long-desc">Multi-game hub.</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy Script</button>
 </div></div>
 
@@ -227,11 +225,51 @@ section.active{
 <div class="card-content">
 <h3>Quantum Onyx</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua"))()</div>
-<div class="long-desc">Low lag farming focused script.</div>
-<div class="long-desc">Status: Operational</div>
+<div class="long-desc">Low lag script.</div>
 <button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua`))()')">Copy Script</button>
 </div></div>
 
+<!-- NullFire -->
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1765399635373.png">
+<div class="card-content">
+<h3>NullFire</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()</div>
+<div class="long-desc">Visual + automation hub.</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua`))()')">Copy Script</button>
+</div></div>
+
+<!-- Moondeity -->
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1753093706828.png">
+<div class="card-content">
+<h3>Moondeity Hub</h3>
+<div class="desc">loadstring(game:HttpGet("https://moondiety.com/loader"))()</div>
+<div class="long-desc">Multi-game support.</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://moondiety.com/loader`))()')">Copy Script</button>
+</div></div>
+
+<!-- Deluxed -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
+<div class="card-content">
+<h3>Deluxed Hub</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua",true))()</div>
+<div class="long-desc">Dandys World script.</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua`,true))()')">Copy Script</button>
+</div></div>
+
+<!-- Dropkick -->
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
+<div class="card-content">
+<h3>Dropkick Fling</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua"))()</div>
+<div class="long-desc">Fling script.</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua`))()')">Copy Script</button>
+</div></div>
+
+</div>
 </div>
 
 <div class="coming">More Scripts Coming Soon.</div>
@@ -242,7 +280,7 @@ section.active{
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>This is a premium Roblox script hub inspired by Velocity UI.</p>
+<p>ScriptNow is a premium Roblox script hub inspired by Velocity UI.</p>
 <p>Owner: @Mybrocrashedout</p>
 </div>
 </section>
@@ -271,7 +309,7 @@ document.body.style.setProperty('--x', e.clientX+'px')
 document.body.style.setProperty('--y', e.clientY+'px')
 })
 
-/* GRID EFFECT */
+/* GRID */
 const canvas=document.getElementById('grid')
 const ctx=canvas.getContext('2d')
 canvas.width=innerWidth
@@ -285,19 +323,16 @@ mouse.y=e.clientY
 
 function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height)
-const size=40
-for(let x=0;x<canvas.width;x+=size){
-for(let y=0;y<canvas.height;y+=size){
-let dx=mouse.x-x
-let dy=mouse.y-y
-let dist=Math.sqrt(dx*dx+dy*dy)
-let opacity=Math.max(0,1-dist/200)
-if(opacity>0){
-ctx.fillStyle=`rgba(0,255,255,${opacity*0.15})`
-ctx.fillRect(x,y,size-2,size-2)
+for(let x=0;x<canvas.width;x+=40){
+for(let y=0;y<canvas.height;y+=40){
+let dx=mouse.x-x,dy=mouse.y-y
+let d=Math.sqrt(dx*dx+dy*dy)
+let o=Math.max(0,1-d/200)
+if(o>0){
+ctx.fillStyle=`rgba(0,255,255,${o*0.15})`
+ctx.fillRect(x,y,38,38)
 }
-}
-}
+}}
 requestAnimationFrame(draw)
 }
 draw()
