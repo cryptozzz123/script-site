@@ -8,38 +8,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Inter',sans-serif;
-}
-
-body{
-  background:#000;
-  color:#fff;
-  overflow:hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#000;color:#fff;overflow:hidden}
 
 /* BACKGROUND */
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-}
-
-#cubes{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  opacity:0.7;
-}
+canvas{position:fixed;inset:0;z-index:-2}
+#cubes{position:fixed;inset:0;z-index:-1;opacity:0.7}
 
 /* CURSOR */
 .lightning{
   position:fixed;
-  width:18px;
-  height:18px;
+  width:18px;height:18px;
   border-radius:50%;
   pointer-events:none;
   background:radial-gradient(circle,#00ffcc,transparent);
@@ -50,69 +29,24 @@ canvas{
 
 /* NAV */
 nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
+  position:fixed;top:0;width:100%;
+  display:flex;justify-content:space-between;
   padding:18px 40px;
   background:rgba(0,0,0,0.4);
   backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,255,255,0.1);
   z-index:10;
 }
-
-.nav-links span{
-  margin-left:20px;
-  cursor:pointer;
-  opacity:.7;
-  transition:0.3s;
-}
-
-.nav-links span:hover{
-  opacity:1;
-  color:#00ffcc;
-}
+.nav-links span{margin-left:20px;cursor:pointer;opacity:.7}
+.nav-links span:hover{opacity:1;color:#00ffcc}
 
 /* SECTIONS */
-section{
-  display:none;
-  min-height:100vh;
-  padding-top:90px;
-}
+section{display:none;min-height:100vh;padding-top:90px}
+section.active{display:block}
 
-section.active{
-  display:block;
-}
-
-/* HOME */
-.hero{
-  text-align:center;
-  margin-top:120px;
-}
-
-.hero h1{
-  font-size:60px;
-}
-
-.hero span{
-  color:#00ffcc;
-  text-decoration:underline;
-}
-
-.hero button{
-  margin-top:20px;
-  padding:12px 20px;
-  border:none;
-  border-radius:10px;
-  background:white;
-  color:black;
-  cursor:pointer;
-}
-
-.hero button:hover{
-  background:#00ffcc;
-}
+/* HERO */
+.hero{text-align:center;margin-top:120px}
+.hero h1{font-size:60px}
+.hero span{color:#00ffcc}
 
 /* GRID */
 .container{
@@ -128,25 +62,12 @@ section.active{
   border-radius:15px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,0.1);
-  transition:0.3s;
-  cursor:none;
+  transition:.3s;
 }
+.card:hover{transform:translateY(-6px);border-color:#00ffcc}
 
-.card:hover{
-  transform:translateY(-8px);
-  border-color:#00ffcc;
-  box-shadow:0 0 20px rgba(0,255,204,0.25);
-}
-
-.card img{
-  width:100%;
-  height:150px;
-  object-fit:cover;
-}
-
-.card-content{
-  padding:12px;
-}
+.card img{width:100%;height:150px;object-fit:cover}
+.card-content{padding:12px}
 
 .desc{font-size:11px;color:#aaa}
 .long-desc{font-size:11px;color:#777}
@@ -158,12 +79,7 @@ section.active{
   border:none;
   border-radius:8px;
   background:white;
-  color:black;
   cursor:pointer;
-}
-
-.copy-btn:hover{
-  background:#00ffcc;
 }
 
 /* SEARCH */
@@ -189,54 +105,22 @@ section.active{
 
 <!-- NAV -->
 <nav>
-  <div>ScriptNow</div>
-  <div class="nav-links">
-    <span onclick="show('home')">Home</span>
-    <span onclick="show('scripts')">Scripts</span>
-    <span onclick="show('about')">About</span>
-  </div>
+<div>ScriptNow</div>
+<div class="nav-links">
+<span onclick="show('home')">Home</span>
+<span onclick="show('scripts')">Scripts</span>
+<span onclick="show('executors')">Executors</span>
+<span onclick="show('about')">About</span>
+</div>
 </nav>
 
-<!-- HOME (UPDATED ONLY HERE) -->
+<!-- HOME -->
 <section id="home" class="active">
-
-  <div class="hero">
-    <h1>Made with Elite <br><span>Power</span></h1>
-    <p>Premium Roblox Script Hub</p>
-    <p>Created in 2026</p>
-    <button onclick="show('scripts')">Explore Scripts</button>
-  </div>
-
-  <!-- HOMEPAGE FEATURED -->
-  <div class="container">
-
-    <div class="card">
-      <img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
-      <div class="card-content">
-        <h3>Infinite Yield</h3>
-        <div class="desc">Universal Admin Script</div>
-        <div class="long-desc">Featured Script</div>
-        <button class="copy-btn" onclick="show('scripts')">Get Script Now</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
-      <div class="card-content">
-        <h3>Quantum Onyx</h3>
-        <div class="desc">Blox Fruits Hub</div>
-        <div class="long-desc">Featured Script</div>
-        <button class="copy-btn" onclick="show('scripts')">Get Script Now</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SCRIPTS (FULL RESTORED + FIXED) -->
-<section id="scripts">
-
-<input class="search" placeholder="Search..." onkeyup="search()">
+<div class="hero">
+<h1>Made with Elite <br><span>Power</span></h1>
+<p>Premium Roblox Script Hub</p>
+<button onclick="show('scripts')">Explore Scripts</button>
+</div>
 
 <div class="container">
 
@@ -245,17 +129,7 @@ section.active{
 <div class="card-content">
 <h3>Infinite Yield</h3>
 <div class="desc">Universal Admin Script</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()`)">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
-<div class="card-content">
-<h3>HoHo Hub</h3>
-<div class="desc">Multi Game Hub</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()`)">Copy</button>
+<button class="copy-btn" onclick="show('scripts')">Get Script Now</button>
 </div></div>
 
 <div class="card">
@@ -263,44 +137,62 @@ section.active{
 <div class="card-content">
 <h3>Quantum Onyx</h3>
 <div class="desc">Blox Fruits Hub</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua'))()`)">Copy</button>
+<button class="copy-btn" onclick="show('scripts')">Get Script Now</button>
 </div></div>
 
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1765399635373.png">
-<div class="card-content">
+</div>
+</section>
+
+<!-- SCRIPTS -->
+<section id="scripts">
+
+<input class="search" placeholder="Search..." onkeyup="search()">
+
+<div class="container">
+
+<div class="card"><div class="card-content">
+<h3>Infinite Yield</h3>
+<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy</button>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>HoHo Hub</h3>
+<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy</button>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>Quantum Onyx</h3>
+<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua`))()')">Copy</button>
+</div></div>
+
+<div class="card"><div class="card-content">
 <h3>NullFire</h3>
-<div class="desc">Doors / NDS Hub</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua'))()`)">Copy</button>
+<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(`https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua`))()')">Copy</button>
 </div></div>
 
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1753093706828.png">
-<div class="card-content">
-<h3>Moondeity Hub</h3>
-<div class="desc">Universal Hub</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://moondiety.com/loader'))()`)">Copy</button>
+</div>
+</section>
+
+<!-- EXECUTORS (SAFE UI ONLY) -->
+<section id="executors">
+
+<div class="hero">
+<h1>Executors</h1>
+<p>Tool Overview Dashboard</p>
+</div>
+
+<div class="container">
+
+<div class="card"><div class="card-content">
+<h3>Mobile Tools</h3>
+<div class="desc">Delta / Cryptic / Vega X / Codex</div>
+<button class="copy-btn" onclick="alert('Section for informational UI only')">Open</button>
 </div></div>
 
-<div class="card">
-<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
-<div class="card-content">
-<h3>Deluxed Hub</h3>
-<div class="desc">Dandys World</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua', true))()`)">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
-<div class="card-content">
-<h3>Dropkick Fling</h3>
-<div class="desc">Universal Fling</div>
-<div class="long-desc">Status: Operational</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua'))()`)">Copy</button>
+<div class="card"><div class="card-content">
+<h3>Windows Tools</h3>
+<div class="desc">Volt / Wave / Xeno / Solara</div>
+<button class="copy-btn" onclick="alert('Section for informational UI only')">Open</button>
 </div></div>
 
 </div>
@@ -310,102 +202,82 @@ section.active{
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>ScriptNow Final Stable Version</p>
+<p>ScriptNow Dashboard UI</p>
 </div>
 </section>
 
 <script>
 
 function show(id){
-  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
-  document.getElementById(id).classList.add('active')
+document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
+document.getElementById(id).classList.add('active')
 }
 
-function copy(text){
-  navigator.clipboard.writeText(text)
+function copy(t){
+navigator.clipboard.writeText(t)
 }
 
 function search(){
-  let v=document.querySelector('.search').value.toLowerCase()
-  document.querySelectorAll('.card').forEach(c=>{
-    c.style.display=c.innerText.toLowerCase().includes(v)?'block':'none'
-  })
+let v=document.querySelector('.search').value.toLowerCase()
+document.querySelectorAll('.card').forEach(c=>{
+c.style.display=c.innerText.toLowerCase().includes(v)?'block':'none'
+})
 }
 
 /* cursor */
-const l=document.getElementById("lightning");
-document.addEventListener("mousemove",(e)=>{
-  l.style.left=e.clientX+"px";
-  l.style.top=e.clientY+"px";
-});
+const l=document.getElementById("lightning")
+document.addEventListener("mousemove",e=>{
+l.style.left=e.clientX+"px"
+l.style.top=e.clientY+"px"
+})
 
-/* background */
-const bg=document.getElementById("bg");
-const ctx=bg.getContext("2d");
-
-function resize(){
-  bg.width=window.innerWidth;
-  bg.height=window.innerHeight;
-}
-resize();
+/* bg grid */
+const bg=document.getElementById("bg")
+const ctx=bg.getContext("2d")
+bg.width=window.innerWidth
+bg.height=window.innerHeight
 
 function draw(){
-  ctx.clearRect(0,0,bg.width,bg.height);
-  ctx.strokeStyle="rgba(255,255,255,0.05)";
-  let g=50;
-
-  for(let x=0;x<bg.width;x+=g){
-    ctx.beginPath();
-    ctx.moveTo(x,0);
-    ctx.lineTo(x,bg.height);
-    ctx.stroke();
-  }
-
-  for(let y=0;y<bg.height;y+=g){
-    ctx.beginPath();
-    ctx.moveTo(0,y);
-    ctx.lineTo(bg.width,y);
-    ctx.stroke();
-  }
-
-  requestAnimationFrame(draw);
+ctx.clearRect(0,0,bg.width,bg.height)
+ctx.strokeStyle="rgba(255,255,255,0.05)"
+for(let x=0;x<bg.width;x+=50){
+ctx.beginPath()
+ctx.moveTo(x,0)
+ctx.lineTo(x,bg.height)
+ctx.stroke()
 }
-draw();
+for(let y=0;y<bg.height;y+=50){
+ctx.beginPath()
+ctx.moveTo(0,y)
+ctx.lineTo(bg.width,y)
+ctx.stroke()
+}
+requestAnimationFrame(draw)
+}
+draw()
 
 /* cubes */
-const cube=document.getElementById("cubes");
-const c=cube.getContext("2d");
+const cube=document.getElementById("cubes")
+const c=cube.getContext("2d")
+cube.width=window.innerWidth
+cube.height=window.innerHeight
 
-function resize2(){
-  cube.width=window.innerWidth;
-  cube.height=window.innerHeight;
-}
-resize2();
-
-let cubes=[];
-for(let i=0;i<20;i++){
-  cubes.push({
-    x:Math.random()*window.innerWidth,
-    y:Math.random()*window.innerHeight,
-    s:20+Math.random()*30,
-    v:0.3+Math.random()
-  });
+let arr=[]
+for(let i=0;i<15;i++){
+arr.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:20+Math.random()*30,v:1})
 }
 
 function drawCubes(){
-  c.clearRect(0,0,cube.width,cube.height);
-
-  cubes.forEach(b=>{
-    b.y-=b.v;
-    if(b.y<-50)b.y=window.innerHeight+50;
-
-    c.strokeStyle="rgba(0,255,204,0.2)";
-    c.strokeRect(b.x,b.y,b.s,b.s);
-  });
-
-  requestAnimationFrame(drawCubes);
+c.clearRect(0,0,cube.width,cube.height)
+arr.forEach(b=>{
+b.y-=b.v
+if(b.y<-50)b.y=innerHeight+50
+c.strokeStyle="rgba(0,255,204,0.2)"
+c.strokeRect(b.x,b.y,b.s,b.s)
+})
+requestAnimationFrame(drawCubes)
 }
-drawCubes();
+drawCubes()
 
 </script>
 
