@@ -10,169 +10,64 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 
-body{
-  background:#000;
-  color:#fff;
-  overflow-x:hidden;
-}
-
-/* LIGHT */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle 220px at var(--x,50%) var(--y,50%), rgba(0,255,255,0.08), transparent 60%);
-  pointer-events:none;
-}
-
-/* GRID */
-canvas{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-}
+body{background:#000;color:#fff;overflow-x:hidden}
 
 /* NAV */
 nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
+  position:fixed;top:0;width:100%;
+  display:flex;justify-content:space-between;
   padding:20px 40px;
   background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(10px);
-  z-index:10;
 }
 
 .nav-links span{
-  margin-left:20px;
-  cursor:pointer;
-  opacity:.8;
-  font-weight:600;
+  margin-left:20px;cursor:pointer;font-weight:600;
 }
-.nav-links span:hover{opacity:1}
 
 /* SECTIONS */
-section{
-  display:none;
-  min-height:100vh;
-  padding-top:120px;
-}
+section{display:none;min-height:100vh;padding-top:120px}
 section.active{display:block}
 
 /* HERO */
-.hero{
-  text-align:center;
-  padding:80px 20px;
-}
+.hero{text-align:center;padding:80px}
+.hero h1{font-size:50px;font-weight:900}
 
-.hero h1{
-  font-size:55px;
-  font-weight:900;
-  color:#fff;
-}
-
-.hero p{
-  margin-top:10px;
-  color:#ccc;
-  font-weight:500;
-}
-
-/* WRAPPER */
-.wrapper{
-  max-width:1100px;
-  margin:auto;
-}
-
-/* CARDS */
+/* GRID */
 .container{
-  padding:20px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
+  gap:20px;padding:20px;
 }
 
+/* CARD */
 .card{
-  background:rgba(255,255,255,0.05);
-  border-radius:15px;
+  background:#111;
+  border-radius:12px;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,0.12);
-  backdrop-filter:blur(10px);
-  transition:.3s;
-}
-.card:hover{
-  transform:translateY(-5px);
-  border-color:#0ff;
-  box-shadow:0 0 20px rgba(0,255,255,0.25);
+  border:1px solid #222;
 }
 
-.card img{
-  width:100%;
-  height:150px;
-  object-fit:cover;
-}
+.card img{width:100%;height:150px;object-fit:cover}
+.card-content{padding:10px}
 
-.card-content{padding:12px}
-
-.desc{
-  font-size:11px;
-  color:#ddd;
-  word-break:break-all;
-  font-weight:600;
-}
-
-.long-desc{
-  font-size:12px;
-  color:#ccc;
-  margin-top:6px;
-}
-
-.meta{
-  font-size:12px;
-  color:#bbb;
-  margin-top:4px;
-  font-weight:600;
-}
+.desc{font-size:11px;color:#ccc;word-break:break-all}
+.meta{font-size:12px;color:#aaa;margin-top:4px}
 
 .copy-btn{
-  width:100%;
-  margin-top:10px;
-  padding:8px;
-  border:none;
-  border-radius:8px;
-  background:white;
-  color:black;
-  font-weight:700;
-  cursor:pointer;
+  width:100%;margin-top:8px;
+  padding:8px;border:none;border-radius:6px;
+  background:white;color:black;font-weight:700;
 }
 
-/* SEARCH */
 .search{
-  margin:20px auto;
-  display:block;
-  width:80%;
-  max-width:350px;
-  padding:10px;
-  border-radius:10px;
-  border:none;
-  background:#111;
-  color:white;
-}
-
-/* COMING */
-.coming{
-  text-align:center;
-  font-size:28px;
-  font-weight:900;
-  padding:40px;
+  margin:20px auto;display:block;width:80%;
+  max-width:300px;padding:10px;
+  background:#111;border:none;color:white;border-radius:10px;
 }
 </style>
 </head>
 
 <body>
-
-<canvas id="grid"></canvas>
 
 <nav>
 <div style="font-weight:900;">ScriptNow</div>
@@ -187,23 +82,22 @@ section.active{display:block}
 <section id="home" class="active">
 <div class="hero">
 <h1>ScriptNow</h1>
-<p>Premium Roblox script hub with Velocity-style UI.</p>
+<p>Premium Roblox script hub</p>
 
-<div style="margin-top:20px;font-size:15px;color:#aaa;">
-Made with Elite <span style="text-decoration:underline;color:#0ff;font-weight:700;">Power</span>
+<div style="margin-top:20px;color:#aaa;">
+Made with Elite <span style="text-decoration:underline;color:#0ff;">Power</span>
 </div>
 </div>
 
-<div class="wrapper">
 <div class="container">
 
-<!-- Infinite Yield -->
+<!-- Infinite -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
 <div class="card-content">
 <h3>Infinite Yield</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy Script</button>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy</button>
 </div></div>
 
 <!-- HoHo -->
@@ -212,7 +106,39 @@ Made with Elite <span style="text-decoration:underline;color:#0ff;font-weight:70
 <div class="card-content">
 <h3>HoHo Hub</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy Script</button>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy</button>
+</div></div>
+
+</div>
+</section>
+
+<!-- SCRIPTS -->
+<section id="scripts">
+
+<input class="search" placeholder="Search..." onkeyup="searchScripts(this)">
+
+<div class="container">
+
+<!-- Infinite -->
+<div class="card">
+<img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
+<div class="card-content">
+<h3>Infinite Yield</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()</div>
+<div class="meta">Supported: Universal</div>
+<div class="meta">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy</button>
+</div></div>
+
+<!-- HoHo -->
+<div class="card">
+<img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
+<div class="card-content">
+<h3>HoHo Hub</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
+<div class="meta">Supported: Multi</div>
+<div class="meta">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy</button>
 </div></div>
 
 <!-- Quantum -->
@@ -221,32 +147,29 @@ Made with Elite <span style="text-decoration:underline;color:#0ff;font-weight:70
 <div class="card-content">
 <h3>Quantum Onyx</h3>
 <div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua"))()</div>
-<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua`))()')">Copy Script</button>
+<div class="meta">Supported: Blox Fruits</div>
+<div class="meta">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua`))()')">Copy</button>
+</div></div>
+
+<!-- NullFire -->
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1765399635373.png">
+<div class="card-content">
+<h3>NullFire</h3>
+<div class="desc">loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()</div>
+<div class="meta">Supported: Doors/NDS</div>
+<div class="meta">Status: Operational</div>
+<button class="copy-btn" onclick="copyScriptText('loadstring(game:HttpGet(`https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua`))()')">Copy</button>
 </div></div>
 
 </div>
-</div>
-
-</section>
-
-<!-- SCRIPTS (UNCHANGED) -->
-<section id="scripts">
-<input class="search" id="search" placeholder="Search..." onkeyup="searchScripts()">
-
-<div class="wrapper">
-<div class="container">
-<!-- KEEP YOUR FULL ORIGINAL CARDS HERE -->
-</div>
-</div>
-
-<div class="coming">More Scripts Coming Soon.</div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>ScriptNow is a premium Roblox script hub inspired by Velocity UI.</p>
 <p>Owner: @Mybrocrashedout</p>
 </div>
 </section>
@@ -262,46 +185,12 @@ navigator.clipboard.writeText(text)
 alert('Copied!')
 }
 
-function searchScripts(){
-let input=document.getElementById('search').value.toLowerCase()
-document.querySelectorAll('.card').forEach(card=>{
-card.style.display=card.innerText.toLowerCase().includes(input)?'block':'none'
+function searchScripts(input){
+let val=input.value.toLowerCase()
+document.querySelectorAll('#scripts .card').forEach(card=>{
+card.style.display = card.innerText.toLowerCase().includes(val) ? "block":"none"
 })
 }
-
-/* LIGHT */
-window.addEventListener('mousemove',e=>{
-document.body.style.setProperty('--x', e.clientX+'px')
-document.body.style.setProperty('--y', e.clientY+'px')
-})
-
-/* GRID */
-const canvas=document.getElementById('grid')
-const ctx=canvas.getContext('2d')
-canvas.width=innerWidth
-canvas.height=innerHeight
-
-let mouse={x:0,y:0}
-addEventListener('mousemove',e=>{
-mouse.x=e.clientX
-mouse.y=e.clientY
-})
-
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height)
-for(let x=0;x<canvas.width;x+=40){
-for(let y=0;y<canvas.height;y+=40){
-let dx=mouse.x-x,dy=mouse.y-y
-let d=Math.sqrt(dx*dx+dy*dy)
-let o=Math.max(0,1-d/200)
-if(o>0){
-ctx.fillStyle=`rgba(0,255,255,${o*0.15})`
-ctx.fillRect(x,y,38,38)
-}
-}}
-requestAnimationFrame(draw)
-}
-draw()
 </script>
 
 </body>
