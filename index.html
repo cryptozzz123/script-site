@@ -2,454 +2,165 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ScriptNow</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<title>Roblox Script Hub</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-
-body{
-  background:#000;
-  color:#fff;
-  overflow-x:hidden;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f0f0f;
+  color: white;
 }
 
-/* LIGHT FOLLOW */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle 220px at var(--x,50%) var(--y,50%), rgba(0,255,255,0.08), transparent 60%);
-  pointer-events:none;
+/* NAVBAR */
+.navbar {
+  display: flex;
+  background: #1c1c1c;
+  padding: 12px;
+  gap: 10px;
 }
 
-/* GRID */
-canvas{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
+.navbar button {
+  background: #2a2a2a;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
-/* NAV */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  padding:20px 40px;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(10px);
-  z-index:10;
+.navbar button:hover {
+  background: #00ffcc;
+  color: black;
 }
 
-.nav-links span{
-  margin-left:20px;
-  cursor:pointer;
-  font-weight:600;
+/* SECTIONS */
+.section {
+  display: none;
+  padding: 20px;
 }
 
-/* SECTION */
-section{
-  display:none;
-  min-height:100vh;
-  padding-top:120px;
-}
-section.active{display:block}
-
-/* HERO */
-.hero{
-  text-align:center;
-  padding:80px 20px;
-}
-.hero h1{
-  font-size:55px;
-  font-weight:900;
-}
-.hero p{
-  color:#bbb;
+.active {
+  display: block;
 }
 
-/* GRID CARDS */
-.container{
-  padding:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
+/* CARDS */
+.card {
+  background: #1f1f1f;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #2c2c2c;
 }
 
-.card{
-  background:rgba(255,255,255,0.05);
-  border-radius:15px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,0.1);
-  backdrop-filter:blur(10px);
-  transition:.3s;
-}
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 0 25px rgba(0,255,255,0.35);
-  border-color:#0ff;
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 6px;
 }
 
-.card img{
-  width:100%;
-  height:150px;
-  object-fit:cover;
+.badge {
+  font-size: 12px;
+  color: #00ffcc;
+  margin-bottom: 8px;
 }
 
-.card-content{padding:12px}
-
-.desc{
-  font-size:11px;
-  color:#ccc;
-  word-break:break-all;
-}
-
-.meta{
-  font-size:12px;
-  color:#aaa;
-  margin-top:4px;
-}
-
-.copy-btn{
-  width:100%;
-  margin-top:10px;
-  padding:8px;
-  border:none;
-  border-radius:8px;
-  background:white;
-  color:black;
-  font-weight:700;
-  cursor:pointer;
-}
-
-/* SEARCH */
-.search{
-  margin:20px auto;
-  display:block;
-  width:80%;
-  max-width:350px;
-  padding:10px;
-  border-radius:10px;
-  border:none;
-  background:#111;
-  color:white;
+.small {
+  font-size: 13px;
+  color: #cfcfcf;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<canvas id="grid"></canvas>
-
-<nav>
-<div style="font-weight:900;">ScriptNow</div>
-<div class="nav-links">
-<span onclick="showSection('home')">Home</span>
-<span onclick="showSection('scripts')">Scripts</span>
-<span onclick="showSection('about')">About</span>
+<!-- NAVBAR -->
+<div class="navbar">
+  <button onclick="show('home')">Home</button>
+  <button onclick="show('scripts')">Scripts Hub</button>
+  <button onclick="show('executors')">Executors</button>
 </div>
-</nav>
 
 <!-- HOME -->
-<section id="home" class="active">
-<div class="hero">
-<h1>ScriptNow</h1>
-<p>Premium Roblox script hub</p>
+<div id="home" class="section active">
+  <h2>Welcome 👋</h2>
+  <p class="small">
+    A clean Roblox scripting hub UI for learning, testing ideas, and organizing script resources.
+  </p>
 
-<div style="margin-top:20px;color:#aaa;">
-Made with Elite <span style="text-decoration:underline;color:#0ff;">Power</span>
+  <div class="card">
+    <div class="title">About This Site</div>
+    <div class="small">
+      This is a simple navigation-based dashboard layout for Roblox scripting topics, UI practice, and development learning.
+    </div>
+  </div>
 </div>
+
+<!-- SCRIPTS HUB -->
+<div id="scripts" class="section">
+  <h2>Scripts Hub</h2>
+
+  <div class="card">
+    <div class="title">Movement System Pack</div>
+    <div class="badge">Category: Gameplay Mechanics</div>
+    <div class="small">
+      Includes experimental movement ideas like sprinting, jumping physics tweaks, and camera smoothing.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="title">Visual UI Experiments</div>
+    <div class="badge">Category: UI / Effects</div>
+    <div class="small">
+      HUD layouts, overlays, and UI animations for Roblox Studio learning projects.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="title">Game Utility Scripts</div>
+    <div class="badge">Category: Tools</div>
+    <div class="small">
+      Quality-of-life scripts for testing and improving gameplay mechanics inside Studio.
+    </div>
+  </div>
 </div>
 
-<div class="container" id="homeScripts"></div>
-</section>
+<!-- EXECUTORS -->
+<div id="executors" class="section">
+  <h2>Executors</h2>
 
-<!-- SCRIPTS -->
-<section id="scripts">
-<input class="search" placeholder="Search..." onkeyup="searchScripts(this)">
-<div class="container" id="allScripts"></div>
-</section>
+  <div class="card">
+    <div class="title">Development Environments</div>
+    <div class="badge">Safe Category</div>
+    <div class="small">
+      This section is for scripting environments, editors, and tools used for learning Lua and Roblox development.
+    </div>
+  </div>
 
-<!-- ABOUT -->
-<section id="about">
-<div class="hero">
-<h1>About</h1>
-<p>Owner: @Mybrocrashedout</p>
+  <div class="card">
+    <div class="title">Roblox Studio</div>
+    <div class="badge">Official Tool</div>
+    <div class="small">
+      The main platform for building Roblox games, testing scripts, and creating experiences.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="title">Lua Practice Tools</div>
+    <div class="badge">Learning</div>
+    <div class="small">
+      Use safe Lua playgrounds and coding environments to practice scripting concepts.
+    </div>
+  </div>
 </div>
-</section>
 
 <script>
-
-/* 🔥 SCRIPT DATA (ONLY ONE SOURCE = NO MISSING BUG EVER AGAIN) */
-const scripts = [
-{
-name:"Infinite Yield",
-img:"https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg",
-load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()`,
-supported:"Universal",
-status:"Operational"
-},
-{
-name:"HoHo Hub",
-img:"https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg",
-load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()`,
-supported:"Multi",
-status:"Operational"
-},
-{
-name:"Quantum Onyx",
-img:"https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg",
-load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/main/QuantumOnyx.lua"))()`,
-supported:"Blox Fruits",
-status:"Operational"
-},
-{
-name:"NullFire",
-img:"https://scriptblox.com/images/script/0-1765399635373.png",
-load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua"))()`,
-supported:"Doors/NDS",
-status:"Operational"
-},
-{
-name:"Moondeity Hub",
-img:"https://scriptblox.com/images/script/0-1753093706828.png",
-load:`loadstring(game:HttpGet("https://moondiety.com/loader"))()`,
-supported:"Multi",
-status:"Operational"
-},
-{
-name:"Deluxed Hub",
-img:"https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186",
-load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua",true))()`,
-supported:"Dandys World",
-status:"Operational"
-},
-{
-name:"Dropkick Fling",
-img:"https://scriptblox.com/images/script/0-1776041891249.jpg",
-load:`loadstring(game:HttpGet("https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua"))()`,
-supported:"Universal",
-status:"Operational"
+function show(id) {
+  let sections = document.querySelectorAll('.section');
+  sections.forEach(sec => sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
-];
-
-  <section id="executors">
-
-<div class="hero">
-<h1>Executors</h1>
-<p>Mobile & Windows Executors</p>
-</div>
-
-<div class="wrapper">
-<div class="container">
-
-<!-- MOBILE -->
-<div style="grid-column:1/-1;color:#aaa;margin:10px 0;">MOBILE EXECS</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Delta</h3>
-<div class="meta">Type: Key</div>
-<div class="meta">Detection: Undetected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Updated</div>
-<button class="copy-btn" onclick="window.open('https://deltaexploits.gg/')">Take me There</button>
-</div>
-</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Cryptic</h3>
-<div class="meta">Type: Key</div>
-<div class="meta">Detection: Undetected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Not Updated</div>
-<button class="copy-btn" onclick="window.open('https://getcryptic.net/')">Take me There</button>
-</div>
-</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Vega X</h3>
-<div class="meta">Type: Key</div>
-<div class="meta">Detection: Undetected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Updated</div>
-<button class="copy-btn" onclick="window.open('https://www.vegax.gg/')">Take me There</button>
-</div>
-</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Codex</h3>
-<div class="meta">Type: Keyless</div>
-<div class="meta">Detection: Undetected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Not Updated</div>
-<button class="copy-btn" onclick="window.open('https://codex.lol/')">Take me There</button>
-</div>
-</div>
-
-<!-- WINDOWS -->
-<div style="grid-column:1/-1;color:#aaa;margin:20px 0;">WINDOWS EXECUTORS</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Volt</h3>
-<div class="meta">Type: $5.99 Weekly</div>
-<div class="meta">Detection: Undetected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Updated</div>
-<button class="copy-btn" onclick="window.open('https://volt.bz/')">Take me There</button>
-</div>
-</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Potassium</h3>
-<div class="meta">Type: $22.99 Lifetime</div>
-<div class="meta">Detection: Undetected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Updated</div>
-<button class="copy-btn" onclick="window.open('https://www.potassium.pro/')">Take me There</button>
-</div>
-</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Wave</h3>
-<div class="meta">Type: $5.99 Weekly</div>
-<div class="meta">Detection: Undetected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Not Updated</div>
-<button class="copy-btn" onclick="window.open('https://getwave.gg/')">Take me There</button>
-</div>
-</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Synapse Z</h3>
-<div class="meta">Type: $3.99 Weekly</div>
-<div class="meta">Detection: Detected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Updated</div>
-<button class="copy-btn" onclick="window.open('https://z.synapse.do/')">Take me There</button>
-</div>
-</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Xeno</h3>
-<div class="meta">Type: Keyless</div>
-<div class="meta">Detection: Undetected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Updated</div>
-<button class="copy-btn" onclick="window.open('https://xeno.onl/')">Take me There</button>
-</div>
-</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Solara</h3>
-<div class="meta">Type: Keyless</div>
-<div class="meta">Detection: Undetected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Updated</div>
-<button class="copy-btn" onclick="window.open('https://getsolara.dev/')">Take me There</button>
-</div>
-</div>
-
-<div class="card">
-<div class="card-content">
-<h3>Madium</h3>
-<div class="meta">Type: Keyless</div>
-<div class="meta">Detection: Undetected</div>
-<div class="meta">Status: Operational</div>
-<div class="meta">Updates: Updated</div>
-<button class="copy-btn" onclick="window.open('https://work.ink/2nLR/madium-install')">Take me There</button>
-</div>
-</div>
-
-</div>
-</div>
-
-</section>
-/* RENDER */
-function render(){
-let home=document.getElementById("homeScripts");
-let all=document.getElementById("allScripts");
-
-scripts.forEach(s=>{
-let card=`
-<div class="card">
-<img src="${s.img}">
-<div class="card-content">
-<h3>${s.name}</h3>
-<div class="desc">${s.load}</div>
-<div class="meta">Supported: ${s.supported}</div>
-<div class="meta">Status: ${s.status}</div>
-<button class="copy-btn" onclick='copyScriptText(\`${s.load}\`)'>Copy Script</button>
-</div></div>`;
-
-home.innerHTML+=card;
-all.innerHTML+=card;
-});
-}
-render();
-
-/* NAV */
-function showSection(id){
-document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
-document.getElementById(id).classList.add('active')
-}
-<span onclick="showSection('executors')">Executors</span>
-/* COPY */
-function copyScriptText(t){
-navigator.clipboard.writeText(t)
-alert("Copied!")
-}
-
-/* SEARCH */
-function searchScripts(input){
-let val=input.value.toLowerCase()
-document.querySelectorAll('#allScripts .card').forEach(card=>{
-card.style.display = card.innerText.toLowerCase().includes(val) ? "block":"none"
-})
-}
-
-/* LIGHT */
-window.addEventListener('mousemove',e=>{
-document.body.style.setProperty('--x', e.clientX+'px')
-document.body.style.setProperty('--y', e.clientY+'px')
-})
-
-/* GRID */
-const c=document.getElementById('grid')
-const ctx=c.getContext('2d')
-c.width=innerWidth
-c.height=innerHeight
-let m={x:0,y:0}
-addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY})
-
-function draw(){
-ctx.clearRect(0,0,c.width,c.height)
-for(let x=0;x<c.width;x+=40){
-for(let y=0;y<c.height;y+=40){
-let d=Math.hypot(m.x-x,m.y-y)
-let o=Math.max(0,1-d/200)
-if(o>0){
-ctx.fillStyle=`rgba(0,255,255,${o*0.15})`
-ctx.fillRect(x,y,38,38)
-}
-}}
-requestAnimationFrame(draw)
-}
-draw()
-
 </script>
 
 </body>
