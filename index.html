@@ -29,7 +29,8 @@ canvas{position:fixed;inset:0;z-index:-2}
 
 /* NAV */
 nav{
-  position:fixed;top:0;width:100%;
+  position:fixed;
+  top:0;width:100%;
   display:flex;justify-content:space-between;
   padding:18px 40px;
   background:rgba(0,0,0,0.4);
@@ -143,7 +144,7 @@ section.active{display:block}
 </div>
 </section>
 
-<!-- SCRIPTS -->
+<!-- SCRIPTS (FULL RESTORED) -->
 <section id="scripts">
 
 <input class="search" placeholder="Search..." onkeyup="search()">
@@ -152,47 +153,105 @@ section.active{display:block}
 
 <div class="card"><div class="card-content">
 <h3>Infinite Yield</h3>
-<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(`https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source`))()')">Copy</button>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()`)">Copy</button>
 </div></div>
 
 <div class="card"><div class="card-content">
 <h3>HoHo Hub</h3>
-<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(`https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI`))()')">Copy</button>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()`)">Copy</button>
 </div></div>
 
 <div class="card"><div class="card-content">
 <h3>Quantum Onyx</h3>
-<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(`https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua`))()')">Copy</button>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua'))()`)">Copy</button>
 </div></div>
 
 <div class="card"><div class="card-content">
 <h3>NullFire</h3>
-<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(`https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua`))()')">Copy</button>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua'))()`)">Copy</button>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>Moondeity</h3>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://moondiety.com/loader'))()`)">Copy</button>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>Deluxed Hub</h3>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua', true))()`)">Copy</button>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>Dropkick Fling</h3>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua'))()`)">Copy</button>
 </div></div>
 
 </div>
 </section>
 
-<!-- EXECUTORS (SAFE UI ONLY) -->
+<!-- EXECUTORS (FIXED SPLIT) -->
 <section id="executors">
 
 <div class="hero">
-<h1>Executors</h1>
-<p>Tool Overview Dashboard</p>
+<h1>Executors Hub</h1>
+<p>Mobile & PC Tools</p>
 </div>
 
 <div class="container">
 
+<!-- MOBILE -->
+<div style="grid-column:1/-1;color:#00ffcc;font-size:20px;margin-top:10px;">
+📱 MOBILE
+</div>
+
 <div class="card"><div class="card-content">
-<h3>Mobile Tools</h3>
-<div class="desc">Delta / Cryptic / Vega X / Codex</div>
-<button class="copy-btn" onclick="alert('Section for informational UI only')">Open</button>
+<h3>Delta</h3>
+<div class="desc">Type: Key | Status: Operational</div>
 </div></div>
 
 <div class="card"><div class="card-content">
-<h3>Windows Tools</h3>
-<div class="desc">Volt / Wave / Xeno / Solara</div>
-<button class="copy-btn" onclick="alert('Section for informational UI only')">Open</button>
+<h3>Cryptic</h3>
+<div class="desc">Type: Key | Status: Operational</div>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>Vega X</h3>
+<div class="desc">Type: Key | Status: Operational</div>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>Codex</h3>
+<div class="desc">Type: Keyless | Status: Operational</div>
+</div></div>
+
+<!-- PC -->
+<div style="grid-column:1/-1;color:#00ffcc;font-size:20px;margin-top:40px;">
+💻 PC / LAPTOP
+</div>
+
+<div class="card"><div class="card-content">
+<h3>Volt</h3>
+<div class="desc">Weekly | Operational</div>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>Potassium</h3>
+<div class="desc">Lifetime | Operational</div>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>Wave</h3>
+<div class="desc">Weekly | Operational</div>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>Xeno</h3>
+<div class="desc">Keyless | Operational</div>
+</div></div>
+
+<div class="card"><div class="card-content">
+<h3>Solara</h3>
+<div class="desc">Keyless | Operational</div>
 </div></div>
 
 </div>
@@ -202,7 +261,7 @@ section.active{display:block}
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>ScriptNow Dashboard UI</p>
+<p>ScriptNow UI Dashboard</p>
 </div>
 </section>
 
@@ -231,7 +290,7 @@ l.style.left=e.clientX+"px"
 l.style.top=e.clientY+"px"
 })
 
-/* bg grid */
+/* background */
 const bg=document.getElementById("bg")
 const ctx=bg.getContext("2d")
 bg.width=window.innerWidth
@@ -264,10 +323,10 @@ cube.height=window.innerHeight
 
 let arr=[]
 for(let i=0;i<15;i++){
-arr.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:20+Math.random()*30,v:1})
+arr.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:25,v:1})
 }
 
-function drawCubes(){
+function cubes(){
 c.clearRect(0,0,cube.width,cube.height)
 arr.forEach(b=>{
 b.y-=b.v
@@ -275,9 +334,9 @@ if(b.y<-50)b.y=innerHeight+50
 c.strokeStyle="rgba(0,255,204,0.2)"
 c.strokeRect(b.x,b.y,b.s,b.s)
 })
-requestAnimationFrame(drawCubes)
+requestAnimationFrame(cubes)
 }
-drawCubes()
+cubes()
 
 </script>
 
