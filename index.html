@@ -15,18 +15,6 @@ body{background:#000;color:#fff;overflow:hidden}
 canvas{position:fixed;inset:0;z-index:-2}
 #cubes{position:fixed;inset:0;z-index:-1;opacity:0.7}
 
-/* CURSOR */
-.lightning{
-  position:fixed;
-  width:18px;height:18px;
-  border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(circle,#00ffcc,transparent);
-  box-shadow:0 0 20px #00ffcc;
-  transform:translate(-50%,-50%);
-  z-index:999;
-}
-
 /* NAV */
 nav{
   position:fixed;
@@ -38,29 +26,15 @@ nav{
   backdrop-filter:blur(12px);
   z-index:10;
 }
-.nav-links span{
-  margin-left:20px;
-  cursor:pointer;
-  opacity:.7;
-}
-.nav-links span:hover{
-  opacity:1;
-  color:#00ffcc;
-}
+.nav-links span{margin-left:20px;cursor:pointer;opacity:.7}
+.nav-links span:hover{opacity:1;color:#00ffcc}
 
 /* SECTIONS */
-section{
-  display:none;
-  min-height:100vh;
-  padding-top:90px;
-}
+section{display:none;min-height:100vh;padding-top:90px}
 section.active{display:block}
 
 /* HERO */
-.hero{
-  text-align:center;
-  margin-top:120px;
-}
+.hero{text-align:center;margin-top:120px}
 .hero h1{font-size:60px}
 .hero span{color:#00ffcc}
 
@@ -74,10 +48,6 @@ section.active{display:block}
   color:black;
   font-weight:bold;
   cursor:pointer;
-  transition:0.3s;
-}
-.explore-btn:hover{
-  transform:scale(1.05);
 }
 
 /* GRID */
@@ -96,22 +66,16 @@ section.active{display:block}
   border:1px solid rgba(255,255,255,0.1);
   transition:0.3s;
 }
-.card:hover{
-  transform:translateY(-6px);
-  border-color:#00ffcc;
-}
+.card:hover{transform:translateY(-6px);border-color:#00ffcc}
 
 .card img{
   width:100%;
   height:160px;
   object-fit:cover;
-  transition:0.3s;
 }
-.card:hover img{transform:scale(1.05)}
 
 .card-content{padding:12px}
 
-/* COPY BUTTON */
 .copy-btn{
   width:100%;
   margin-top:10px;
@@ -121,6 +85,10 @@ section.active{display:block}
   background:white;
   cursor:pointer;
 }
+
+/* TEXT */
+.status{font-size:11px;color:#aaa;margin-top:4px}
+.supported{font-size:11px;color:#777;margin-top:2px}
 
 /* TOAST */
 #toast{
@@ -133,31 +101,11 @@ section.active{display:block}
   padding:12px 20px;
   border-radius:12px;
   font-weight:bold;
-  font-size:14px;
   opacity:0;
-  pointer-events:none;
   transition:0.3s;
   z-index:9999;
-  box-shadow:0 0 20px rgba(0,255,204,0.4);
 }
-
-#toast.show{
-  opacity:1;
-  bottom:50px;
-}
-
-/* SEARCH */
-.search{
-  margin:20px auto;
-  display:block;
-  width:80%;
-  max-width:400px;
-  padding:10px;
-  border-radius:10px;
-  border:none;
-  background:#111;
-  color:white;
-}
+#toast.show{opacity:1;bottom:50px}
 </style>
 </head>
 
@@ -165,7 +113,6 @@ section.active{display:block}
 
 <canvas id="bg"></canvas>
 <canvas id="cubes"></canvas>
-<div class="lightning" id="lightning"></div>
 
 <!-- TOAST -->
 <div id="toast">Copied Script Successfully.</div>
@@ -184,41 +131,85 @@ section.active{display:block}
 <!-- HOME -->
 <section id="home" class="active">
 <div class="hero">
-<h1>Made with Elite <br><span>Power</span></h1>
-<p>Premium Roblox Script Hub</p>
-
-<button class="explore-btn" onclick="show('scripts')">
-✨ Explore Scripts
-</button>
+<h1>Elite <br><span>Script Hub</span></h1>
+<p>Premium Roblox Scripts</p>
+<button class="explore-btn" onclick="show('scripts')">✨ Explore Scripts</button>
 </div>
 </section>
 
-<!-- SCRIPTS -->
+<!-- SCRIPTS (FULL RESTORED) -->
 <section id="scripts">
-
-<input class="search" placeholder="Search..." onkeyup="search()">
 
 <div class="container">
 
+<!-- Infinite Yield -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
 <div class="card-content">
 <h3>Infinite Yield</h3>
+<div class="status">Status: Operational</div>
+<div class="supported">Supported: Universal</div>
 <button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()`)">Copy Script</button>
 </div></div>
 
+<!-- HoHo -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
 <div class="card-content">
 <h3>HoHo Hub</h3>
+<div class="status">Status: Operational</div>
+<div class="supported">Supported: Multiple Games</div>
 <button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()`)">Copy Script</button>
 </div></div>
 
+<!-- Quantum -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
 <div class="card-content">
 <h3>Quantum Onyx</h3>
+<div class="status">Status: Operational</div>
+<div class="supported">Supported: Blox Fruits</div>
 <button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua'))()`)">Copy Script</button>
+</div></div>
+
+<!-- NullFire -->
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1765399635373.png">
+<div class="card-content">
+<h3>NullFire</h3>
+<div class="status">Status: Operational</div>
+<div class="supported">Supported: Doors, NDS</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua'))()`)">Copy Script</button>
+</div></div>
+
+<!-- Moondeity -->
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1753093706828.png">
+<div class="card-content">
+<h3>Moondeity Hub</h3>
+<div class="status">Status: Operational</div>
+<div class="supported">Supported: Multiple Games</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://moondiety.com/loader'))()`)">Copy Script</button>
+</div></div>
+
+<!-- Deluxed -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
+<div class="card-content">
+<h3>Deluxed Hub</h3>
+<div class="status">Status: Operational</div>
+<div class="supported">Supported: Dandys World</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua', true))()`)">Copy Script</button>
+</div></div>
+
+<!-- Dropkick -->
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
+<div class="card-content">
+<h3>Dropkick Fling</h3>
+<div class="status">Status: Operational</div>
+<div class="supported">Supported: Universal</div>
+<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua'))()`)">Copy Script</button>
 </div></div>
 
 </div>
@@ -227,8 +218,8 @@ section.active{display:block}
 <!-- EXECUTORS -->
 <section id="executors">
 <div class="hero">
-<h1>Executors Hub</h1>
-<p>Mobile & PC Overview</p>
+<h1>Executors</h1>
+<p>Mobile & PC Tools</p>
 </div>
 
 <div class="container">
@@ -242,7 +233,7 @@ section.active{display:block}
 <div class="card">
 <div class="card-content">
 <h3>💻 PC</h3>
-<p>Volt • Wave • Xeno • Solara</p>
+<p>Volt • Wave • Xeno • Solara • Potassium</p>
 </div></div>
 
 </div>
@@ -252,7 +243,7 @@ section.active{display:block}
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>ScriptNow UI Dashboard</p>
+<p>ScriptNow Dashboard</p>
 </div>
 </section>
 
@@ -264,31 +255,14 @@ document.getElementById(id).classList.add('active')
 }
 
 function copy(text){
-navigator.clipboard.writeText(text);
+navigator.clipboard.writeText(text)
 
-const toast=document.getElementById("toast");
-toast.classList.add("show");
-
-setTimeout(()=>{
-toast.classList.remove("show");
-},3000);
+const t=document.getElementById("toast")
+t.classList.add("show")
+setTimeout(()=>t.classList.remove("show"),3000)
 }
 
-function search(){
-let v=document.querySelector('.search').value.toLowerCase()
-document.querySelectorAll('.card').forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(v)?'block':'none'
-})
-}
-
-/* cursor */
-const l=document.getElementById("lightning")
-document.addEventListener("mousemove",e=>{
-l.style.left=e.clientX+"px"
-l.style.top=e.clientY+"px"
-})
-
-/* background grid */
+/* background */
 const bg=document.getElementById("bg")
 const ctx=bg.getContext("2d")
 bg.width=innerWidth
