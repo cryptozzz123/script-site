@@ -11,6 +11,10 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:#000;color:#fff;overflow-x:hidden}
 
+/* BACKGROUND */
+canvas{position:fixed;inset:0;z-index:-2}
+#cubes{position:fixed;inset:0;z-index:-1;opacity:0.6}
+
 /* NAV */
 nav{
   position:fixed;
@@ -94,28 +98,19 @@ section.active{display:block}
   cursor:pointer;
 }
 
-/* TOAST */
-#toast{
+/* GRID EFFECT FIX */
+#bg{
   position:fixed;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#00ffcc;
-  color:#000;
-  padding:12px 20px;
-  border-radius:12px;
-  font-weight:bold;
-  opacity:0;
-  transition:0.3s;
-  z-index:999;
+  inset:0;
+  z-index:-2;
 }
-#toast.show{opacity:1;bottom:50px}
 </style>
 </head>
 
 <body>
 
-<div id="toast">Copied Successfully</div>
+<canvas id="bg"></canvas>
+<canvas id="cubes"></canvas>
 
 <!-- NAV -->
 <nav>
@@ -132,7 +127,7 @@ section.active{display:block}
 <div class="hero">
 <h1>Elite <br><span>Script Hub</span></h1>
 <p>Roblox Scripts & Executors</p>
-<button class="explore-btn" onclick="show('scripts')">✨ Explore Scripts</button>
+<button class="explore-btn" onclick="show('scripts')">Explore Scripts</button>
 </div>
 </section>
 
@@ -143,6 +138,7 @@ section.active{display:block}
 
 <div class="container">
 
+<!-- Infinite Yield -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
 <div class="card-content">
@@ -152,6 +148,7 @@ section.active{display:block}
 <button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source\'))()')">Copy Script</button>
 </div></div>
 
+<!-- HoHo -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
 <div class="card-content">
@@ -161,22 +158,24 @@ section.active{display:block}
 <button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI\'))()')">Copy Script</button>
 </div></div>
 
+<!-- Quantum Onyx (RESTORED) -->
 <div class="card">
-<img src="https://scriptblox.com/images/script/0-1753093706828.png">
+<img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
 <div class="card-content">
-<h3>Moondeity</h3>
+<h3>Quantum Onyx</h3>
 <div class="status">Operational</div>
-<div class="desc">Universal hub</div>
-<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://moondiety.com/loader\'))()')">Copy Script</button>
+<div class="desc">Blox Fruits hub</div>
+<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua\'))()')">Copy Script</button>
 </div></div>
 
+<!-- Deluxed Hub (RESTORED) -->
 <div class="card">
-<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
+<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
 <div class="card-content">
-<h3>Dropkick Fling</h3>
+<h3>Deluxed Hub</h3>
 <div class="status">Operational</div>
-<div class="desc">Fling script</div>
-<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua\'))()')">Copy Script</button>
+<div class="desc">Dandys World script</div>
+<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua\',true))()')">Copy Script</button>
 </div></div>
 
 </div>
@@ -219,14 +218,6 @@ section.active{display:block}
 <button class="copy-btn" onclick="copy('https://codex.lol/')">Copy Website</button>
 </div></div>
 
-<div class="card">
-<img src="https://i.ytimg.com/vi/mnuDg1usVRE/maxresdefault.jpg">
-<div class="card-content">
-<h3>Vega X</h3>
-<div class="desc">Not working</div>
-<button class="copy-btn" onclick="copy('Vega X not working')">Copy Website</button>
-</div></div>
-
 <!-- PC -->
 <h2 style="width:100%;color:#00ffcc;">💻 PC EXECUTORS</h2>
 
@@ -246,61 +237,55 @@ section.active{display:block}
 <button class="copy-btn" onclick="copy('https://getwave.gg/')">Copy Website</button>
 </div></div>
 
-<div class="card">
-<img src="https://i.ytimg.com/vi/_VAr8ggJ8EE/maxresdefault.jpg">
-<div class="card-content">
-<h3>Xeno</h3>
-<div class="desc">Down</div>
-<button class="copy-btn" onclick="copy('Xeno down')">Copy Website</button>
-</div></div>
-
-<div class="card">
-<img src="https://tse1.mm.bing.net/th/id/OIP.yw9kInQRfCm9YnkZEK2qBQHaEK">
-<div class="card-content">
-<h3>Solara</h3>
-<div class="desc">Lightweight executor</div>
-<button class="copy-btn" onclick="copy('https://getsolara.dev/')">Copy Website</button>
-</div></div>
-
-<div class="card">
-<img src="https://i.ytimg.com/vi/qxOBSxsOX1s/maxresdefault.jpg">
-<div class="card-content">
-<h3>Potassium</h3>
-<div class="desc">High performance</div>
-<button class="copy-btn" onclick="copy('https://potassium.pro/')">Copy Website</button>
-</div></div>
-
-<div class="card">
-<img src="https://i.ytimg.com/vi/nF9GtNbdogw/maxresdefault.jpg">
-<div class="card-content">
-<h3>Madium</h3>
-<div class="desc">Stable executor</div>
-<button class="copy-btn" onclick="copy('https://madium.net/index.html/')">Copy Website</button>
-</div></div>
-
 </div>
 </section>
 
 <script>
 
+/* SWITCH */
 function show(id){
 document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
 document.getElementById(id).classList.add('active')
 }
 
+/* COPY */
 function copy(text){
 navigator.clipboard.writeText(text)
-const t=document.getElementById("toast")
-t.classList.add("show")
-setTimeout(()=>t.classList.remove("show"),3000)
 }
 
+/* SEARCH */
 function search(){
 let v=document.getElementById("searchBar").value.toLowerCase()
 document.querySelectorAll(".card").forEach(c=>{
 c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none"
 })
 }
+
+/* GRID FIX */
+const bg=document.getElementById("bg")
+const ctx=bg.getContext("2d")
+bg.width=innerWidth
+bg.height=innerHeight
+
+function draw(){
+ctx.clearRect(0,0,bg.width,bg.height)
+ctx.strokeStyle="rgba(255,255,255,0.05)"
+for(let x=0;x<bg.width;x+=50){
+ctx.beginPath()
+ctx.moveTo(x,0)
+ctx.lineTo(x,bg.height)
+ctx.stroke()
+}
+for(let y=0;y<bg.height;y+=50){
+ctx.beginPath()
+ctx.moveTo(0,y)
+ctx.lineTo(bg.width,y)
+ctx.stroke()
+}
+requestAnimationFrame(draw)
+}
+draw()
+
 </script>
 
 </body>
