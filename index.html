@@ -11,10 +11,6 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:#000;color:#fff;overflow:hidden}
 
-/* BACKGROUND */
-canvas{position:fixed;inset:0;z-index:-2}
-#cubes{position:fixed;inset:0;z-index:-1;opacity:0.7}
-
 /* NAV */
 nav{
   position:fixed;
@@ -26,6 +22,7 @@ nav{
   backdrop-filter:blur(12px);
   z-index:10;
 }
+
 .nav-links span{margin-left:20px;cursor:pointer;opacity:.7}
 .nav-links span:hover{opacity:1;color:#00ffcc}
 
@@ -38,16 +35,18 @@ section.active{display:block}
 .hero h1{font-size:60px}
 .hero span{color:#00ffcc}
 
-/* BUTTON */
-.explore-btn{
-  margin-top:20px;
-  padding:12px 25px;
-  border:none;
+/* SEARCH BAR (RESTORED) */
+.search{
+  margin:20px auto;
+  display:block;
+  width:80%;
+  max-width:420px;
+  padding:12px;
   border-radius:12px;
-  background:linear-gradient(90deg,#00ffcc,#00a2ff);
-  color:black;
-  font-weight:bold;
-  cursor:pointer;
+  border:none;
+  background:#111;
+  color:white;
+  outline:none;
 }
 
 /* GRID */
@@ -66,7 +65,11 @@ section.active{display:block}
   border:1px solid rgba(255,255,255,0.1);
   transition:0.3s;
 }
-.card:hover{transform:translateY(-6px);border-color:#00ffcc}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#00ffcc;
+}
 
 .card img{
   width:100%;
@@ -74,8 +77,7 @@ section.active{display:block}
   object-fit:cover;
 }
 
-.card-content{padding:12px}
-
+/* COPY */
 .copy-btn{
   width:100%;
   margin-top:10px;
@@ -85,10 +87,6 @@ section.active{display:block}
   background:white;
   cursor:pointer;
 }
-
-/* TEXT */
-.status{font-size:11px;color:#aaa;margin-top:4px}
-.supported{font-size:11px;color:#777;margin-top:2px}
 
 /* TOAST */
 #toast{
@@ -105,19 +103,15 @@ section.active{display:block}
   transition:0.3s;
   z-index:9999;
 }
+
 #toast.show{opacity:1;bottom:50px}
 </style>
 </head>
 
 <body>
 
-<canvas id="bg"></canvas>
-<canvas id="cubes"></canvas>
-
-<!-- TOAST -->
 <div id="toast">Copied Script Successfully.</div>
 
-<!-- NAV -->
 <nav>
 <div>ScriptNow</div>
 <div class="nav-links">
@@ -133,83 +127,35 @@ section.active{display:block}
 <div class="hero">
 <h1>Elite <br><span>Script Hub</span></h1>
 <p>Premium Roblox Scripts</p>
-<button class="explore-btn" onclick="show('scripts')">✨ Explore Scripts</button>
 </div>
 </section>
 
-<!-- SCRIPTS (FULL RESTORED) -->
+<!-- SCRIPTS (SEARCH RESTORED HERE) -->
 <section id="scripts">
+
+<input class="search" id="searchBar" placeholder="Search scripts..." onkeyup="search()">
 
 <div class="container">
 
-<!-- Infinite Yield -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
 <div class="card-content">
 <h3>Infinite Yield</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Universal</div>
 <button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()`)">Copy Script</button>
 </div></div>
 
-<!-- HoHo -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
 <div class="card-content">
 <h3>HoHo Hub</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Multiple Games</div>
 <button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()`)">Copy Script</button>
 </div></div>
 
-<!-- Quantum -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
 <div class="card-content">
 <h3>Quantum Onyx</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Blox Fruits</div>
 <button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua'))()`)">Copy Script</button>
-</div></div>
-
-<!-- NullFire -->
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1765399635373.png">
-<div class="card-content">
-<h3>NullFire</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Doors, NDS</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua'))()`)">Copy Script</button>
-</div></div>
-
-<!-- Moondeity -->
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1753093706828.png">
-<div class="card-content">
-<h3>Moondeity Hub</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Multiple Games</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://moondiety.com/loader'))()`)">Copy Script</button>
-</div></div>
-
-<!-- Deluxed -->
-<div class="card">
-<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
-<div class="card-content">
-<h3>Deluxed Hub</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Dandys World</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua', true))()`)">Copy Script</button>
-</div></div>
-
-<!-- Dropkick -->
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
-<div class="card-content">
-<h3>Dropkick Fling</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Universal</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua'))()`)">Copy Script</button>
 </div></div>
 
 </div>
@@ -219,21 +165,19 @@ section.active{display:block}
 <section id="executors">
 <div class="hero">
 <h1>Executors</h1>
-<p>Mobile & PC Tools</p>
+<p>Mobile & PC</p>
 </div>
 
 <div class="container">
 
-<div class="card">
-<div class="card-content">
-<h3>📱 Mobile</h3>
+<div class="card"><div class="card-content">
+<h3>Mobile</h3>
 <p>Delta • Cryptic • Vega X • Codex</p>
 </div></div>
 
-<div class="card">
-<div class="card-content">
-<h3>💻 PC</h3>
-<p>Volt • Wave • Xeno • Solara • Potassium</p>
+<div class="card"><div class="card-content">
+<h3>PC</h3>
+<p>Volt • Wave • Xeno • Solara</p>
 </div></div>
 
 </div>
@@ -243,7 +187,7 @@ section.active{display:block}
 <section id="about">
 <div class="hero">
 <h1>About</h1>
-<p>ScriptNow Dashboard</p>
+<p>Script Dashboard</p>
 </div>
 </section>
 
@@ -256,59 +200,18 @@ document.getElementById(id).classList.add('active')
 
 function copy(text){
 navigator.clipboard.writeText(text)
-
 const t=document.getElementById("toast")
 t.classList.add("show")
 setTimeout(()=>t.classList.remove("show"),3000)
 }
 
-/* background */
-const bg=document.getElementById("bg")
-const ctx=bg.getContext("2d")
-bg.width=innerWidth
-bg.height=innerHeight
-
-function draw(){
-ctx.clearRect(0,0,bg.width,bg.height)
-ctx.strokeStyle="rgba(255,255,255,0.05)"
-for(let x=0;x<bg.width;x+=50){
-ctx.beginPath()
-ctx.moveTo(x,0)
-ctx.lineTo(x,bg.height)
-ctx.stroke()
-}
-for(let y=0;y<bg.height;y+=50){
-ctx.beginPath()
-ctx.moveTo(0,y)
-ctx.lineTo(bg.width,y)
-ctx.stroke()
-}
-requestAnimationFrame(draw)
-}
-draw()
-
-/* cubes */
-const cube=document.getElementById("cubes")
-const c=cube.getContext("2d")
-cube.width=innerWidth
-cube.height=innerHeight
-
-let arr=[]
-for(let i=0;i<15;i++){
-arr.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:25,v:1})
-}
-
-function cubes(){
-c.clearRect(0,0,cube.width,cube.height)
-arr.forEach(b=>{
-b.y-=b.v
-if(b.y<-50)b.y=innerHeight+50
-c.strokeStyle="rgba(0,255,204,0.2)"
-c.strokeRect(b.x,b.y,b.s,b.s)
+/* SEARCH FUNCTION (FIXED) */
+function search(){
+let input=document.getElementById("searchBar").value.toLowerCase()
+document.querySelectorAll(".card").forEach(card=>{
+card.style.display=card.innerText.toLowerCase().includes(input)?"block":"none"
 })
-requestAnimationFrame(cubes)
 }
-cubes()
 
 </script>
 
