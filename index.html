@@ -9,23 +9,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#000;color:#fff;overflow:hidden}
-
-/* BACKGROUND */
-canvas{position:fixed;inset:0;z-index:-2}
-#cubes{position:fixed;inset:0;z-index:-1;opacity:0.6}
-
-/* CURSOR GLOW */
-.lightning{
-  position:fixed;
-  width:16px;height:16px;
-  border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(circle,#00ffcc,transparent);
-  box-shadow:0 0 20px #00ffcc;
-  transform:translate(-50%,-50%);
-  z-index:999;
-}
+body{background:#000;color:#fff;overflow-x:hidden}
 
 /* NAV */
 nav{
@@ -34,7 +18,7 @@ nav{
   display:flex;
   justify-content:space-between;
   padding:18px 40px;
-  background:rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.6);
   backdrop-filter:blur(12px);
   z-index:10;
 }
@@ -42,18 +26,11 @@ nav{
 .nav-links span:hover{opacity:1;color:#00ffcc}
 
 /* SECTIONS */
-section{
-  display:none;
-  min-height:100vh;
-  padding-top:90px;
-}
+section{display:none;min-height:100vh;padding-top:90px}
 section.active{display:block}
 
 /* HERO */
-.hero{
-  text-align:center;
-  margin-top:120px;
-}
+.hero{text-align:center;margin-top:120px}
 .hero h1{font-size:60px}
 .hero span{color:#00ffcc}
 
@@ -93,23 +70,16 @@ section.active{display:block}
 /* CARD */
 .card{
   background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(12px);
   border:1px solid rgba(255,255,255,0.1);
   border-radius:15px;
   overflow:hidden;
   transition:0.3s;
 }
 .card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 0 20px rgba(0,255,204,0.3);
+  transform:translateY(-6px);
+  box-shadow:0 0 18px rgba(0,255,204,0.3);
 }
-
-.card img{
-  width:100%;
-  height:150px;
-  object-fit:cover;
-}
-
+.card img{width:100%;height:150px;object-fit:cover}
 .card-content{padding:12px}
 .desc{font-size:12px;color:#777}
 .status{font-size:12px;color:#aaa}
@@ -137,17 +107,13 @@ section.active{display:block}
   font-weight:bold;
   opacity:0;
   transition:0.3s;
-  z-index:9999;
+  z-index:999;
 }
 #toast.show{opacity:1;bottom:50px}
 </style>
 </head>
 
 <body>
-
-<canvas id="bg"></canvas>
-<canvas id="cubes"></canvas>
-<div class="lightning" id="lightning"></div>
 
 <div id="toast">Copied Successfully</div>
 
@@ -173,7 +139,7 @@ section.active{display:block}
 <!-- SCRIPTS -->
 <section id="scripts">
 
-<input class="search" id="searchBar" placeholder="Search scripts..." onkeyup="search()">
+<input class="search" id="searchBar" placeholder="Search..." onkeyup="search()">
 
 <div class="container">
 
@@ -221,12 +187,14 @@ section.active{display:block}
 
 <div class="hero">
 <h1>Executors</h1>
-<p>Mobile & PC Tools</p>
+<p>Mobile & PC Split</p>
 </div>
 
 <div class="container">
 
 <!-- MOBILE -->
+<h2 style="width:100%;color:#00ffcc;">📱 MOBILE EXECUTORS</h2>
+
 <div class="card">
 <img src="https://discord.do/wp-content/uploads/2025/03/Delta-executor-Discord-server.jpg">
 <div class="card-content">
@@ -260,6 +228,8 @@ section.active{display:block}
 </div></div>
 
 <!-- PC -->
+<h2 style="width:100%;color:#00ffcc;">💻 PC EXECUTORS</h2>
+
 <div class="card">
 <img src="https://storage.sell.app/media-assets/57471/arsvlv93op6nollhow9rcutw">
 <div class="card-content">
@@ -331,59 +301,6 @@ document.querySelectorAll(".card").forEach(c=>{
 c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none"
 })
 }
-
-const l=document.getElementById("lightning")
-document.addEventListener("mousemove",e=>{
-l.style.left=e.clientX+"px"
-l.style.top=e.clientY+"px"
-})
-
-const bg=document.getElementById("bg")
-const ctx=bg.getContext("2d")
-bg.width=innerWidth
-bg.height=innerHeight
-
-function draw(){
-ctx.clearRect(0,0,bg.width,bg.height)
-ctx.strokeStyle="rgba(255,255,255,0.05)"
-for(let x=0;x<bg.width;x+=50){
-ctx.beginPath()
-ctx.moveTo(x,0)
-ctx.lineTo(x,bg.height)
-ctx.stroke()
-}
-for(let y=0;y<bg.height;y+=50){
-ctx.beginPath()
-ctx.moveTo(0,y)
-ctx.lineTo(bg.width,y)
-ctx.stroke()
-}
-requestAnimationFrame(draw)
-}
-draw()
-
-const cube=document.getElementById("cubes")
-const c=cube.getContext("2d")
-cube.width=innerWidth
-cube.height=innerHeight
-
-let arr=[]
-for(let i=0;i<15;i++){
-arr.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:25,v:1})
-}
-
-function cubes(){
-c.clearRect(0,0,cube.width,cube.height)
-arr.forEach(b=>{
-b.y-=b.v
-if(b.y<-50)b.y=innerHeight+50
-c.strokeStyle="rgba(0,255,204,0.2)"
-c.strokeRect(b.x,b.y,b.s,b.s)
-})
-requestAnimationFrame(cubes)
-}
-cubes()
-
 </script>
 
 </body>
