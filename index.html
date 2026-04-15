@@ -11,11 +11,11 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:#000;color:#fff;overflow:hidden}
 
-/* CANVAS BACKGROUND */
+/* BACKGROUND */
 canvas{position:fixed;inset:0;z-index:-2}
 #cubes{position:fixed;inset:0;z-index:-1;opacity:0.7}
 
-/* LIGHTNING CURSOR */
+/* CURSOR */
 .lightning{
   position:fixed;
   width:18px;height:18px;
@@ -38,72 +38,40 @@ nav{
   backdrop-filter:blur(12px);
   z-index:10;
 }
-
-.nav-links span{
-  margin-left:20px;
-  cursor:pointer;
-  opacity:.7;
-}
-.nav-links span:hover{
-  opacity:1;
-  color:#00ffcc;
-}
+.nav-links span{margin-left:20px;cursor:pointer;opacity:.7}
+.nav-links span:hover{opacity:1;color:#00ffcc}
 
 /* SECTIONS */
-section{
-  display:none;
-  min-height:100vh;
-  padding-top:90px;
-}
+section{display:none;min-height:100vh;padding-top:90px}
 section.active{display:block}
 
 /* HERO */
-.hero{
-  text-align:center;
-  margin-top:120px;
-}
+.hero{text-align:center;margin-top:120px}
 .hero h1{font-size:60px}
 .hero span{color:#00ffcc}
 
-/* EXPLORE BUTTON */
-.explore-btn{
+/* TOGGLE BUTTONS */
+.toggle{
+  text-align:center;
   margin-top:20px;
-  padding:12px 25px;
+}
+.toggle button{
+  margin:10px;
+  padding:10px 20px;
   border:none;
-  border-radius:12px;
-  background:linear-gradient(90deg,#00ffcc,#00a2ff);
-  color:black;
-  font-weight:bold;
+  border-radius:10px;
   cursor:pointer;
-  transition:0.3s;
-  box-shadow:0 0 15px rgba(0,255,204,0.4);
-}
-.explore-btn:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 25px rgba(0,255,204,0.7);
-}
-
-/* SEARCH */
-.search{
-  margin:20px auto;
-  display:block;
-  width:80%;
-  max-width:420px;
-  padding:12px;
-  border-radius:12px;
-  border:none;
   background:#111;
   color:white;
-  outline:none;
 }
+.toggle button:hover{background:#00ffcc;color:black}
 
-/* GRID */
-.container{
-  padding:40px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
+/* DROPDOWN */
+.dropdown{
+  display:none;
+  padding:20px;
 }
+.dropdown.active{display:block}
 
 /* CARD */
 .card{
@@ -111,25 +79,22 @@ section.active{display:block}
   border-radius:15px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,0.1);
+  margin:15px;
   transition:0.3s;
 }
-.card:hover{
-  transform:translateY(-6px);
-  border-color:#00ffcc;
-}
+.card:hover{transform:translateY(-5px);border-color:#00ffcc}
+
 .card img{
   width:100%;
   height:160px;
   object-fit:cover;
 }
 
-/* TEXT */
-.status{font-size:11px;color:#aaa;margin-top:4px}
-.supported{font-size:11px;color:#777;margin-top:2px}
-
 .card-content{padding:12px}
 
-/* BUTTON */
+.status{font-size:12px;color:#aaa}
+.desc{font-size:12px;color:#777;margin-top:4px}
+
 .copy-btn{
   width:100%;
   margin-top:10px;
@@ -139,37 +104,15 @@ section.active{display:block}
   background:white;
   cursor:pointer;
 }
-
-/* TOAST */
-#toast{
-  position:fixed;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#00ffcc;
-  color:#000;
-  padding:12px 20px;
-  border-radius:12px;
-  font-weight:bold;
-  opacity:0;
-  transition:0.3s;
-  z-index:9999;
-}
-#toast.show{opacity:1;bottom:50px}
 </style>
 </head>
 
 <body>
 
-<!-- CANVAS BACKGROUND -->
 <canvas id="bg"></canvas>
 <canvas id="cubes"></canvas>
 
-<!-- LIGHTNING -->
 <div class="lightning" id="lightning"></div>
-
-<!-- TOAST -->
-<div id="toast">Copied Script Successfully.</div>
 
 <!-- NAV -->
 <nav>
@@ -178,149 +121,162 @@ section.active{display:block}
 <span onclick="show('home')">Home</span>
 <span onclick="show('scripts')">Scripts</span>
 <span onclick="show('executors')">Executors</span>
-<span onclick="show('about')">About</span>
 </div>
 </nav>
 
 <!-- HOME -->
 <section id="home" class="active">
 <div class="hero">
-<h1>Made with Elite <br><span>Power</span></h1>
-<p>Premium Roblox Script Hub</p>
-
-<button class="explore-btn" onclick="show('scripts')">
-✨ Explore Scripts
-</button>
+<h1>Elite <br><span>Script Hub</span></h1>
+<p>Premium Roblox Tools</p>
 </div>
 </section>
 
 <!-- SCRIPTS -->
 <section id="scripts">
-
-<input class="search" id="searchBar" placeholder="Search scripts..." onkeyup="search()">
-
-<div class="container">
-
-<!-- ALL SCRIPTS RESTORED -->
-
-<div class="card">
-<img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
-<div class="card-content">
-<h3>Infinite Yield</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Universal</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()`)">Copy Script</button>
-</div></div>
-
-<div class="card">
-<img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
-<div class="card-content">
-<h3>HoHo Hub</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Multiple Games</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()`)">Copy Script</button>
-</div></div>
-
-<div class="card">
-<img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
-<div class="card-content">
-<h3>Quantum Onyx</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Blox Fruits</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua'))()`)">Copy Script</button>
-</div></div>
-
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1765399635373.png">
-<div class="card-content">
-<h3>NullFire</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Doors, NDS</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/TeamNullFire/NullFire/main/loader.lua'))()`)">Copy Script</button>
-</div></div>
-
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1753093706828.png">
-<div class="card-content">
-<h3>Moondeity Hub</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Multiple Games</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://moondiety.com/loader'))()`)">Copy Script</button>
-</div></div>
-
-<div class="card">
-<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
-<div class="card-content">
-<h3>Deluxed Hub</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Dandys World</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua', true))()`)">Copy Script</button>
-</div></div>
-
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
-<div class="card-content">
-<h3>Dropkick Fling</h3>
-<div class="status">Status: Operational</div>
-<div class="supported">Supported: Universal</div>
-<button class="copy-btn" onclick="copy(`loadstring(game:HttpGet('https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua'))()`)">Copy Script</button>
-</div></div>
-
+<div class="hero">
+<h1>Scripts</h1>
 </div>
 </section>
 
 <!-- EXECUTORS -->
 <section id="executors">
+
 <div class="hero">
-<h1>Executors Hub</h1>
-<p>Mobile & PC Overview</p>
+<h1>Executors</h1>
+<p>Choose Platform</p>
 </div>
 
-<div class="container">
+<div class="toggle">
+<button onclick="toggle('mobile')">📱 Mobile</button>
+<button onclick="toggle('pc')">💻 PC</button>
+</div>
+
+<!-- MOBILE -->
+<div id="mobile" class="dropdown">
+
 <div class="card">
+<img src="https://discord.do/wp-content/uploads/2025/03/Delta-executor-Discord-server.jpg">
 <div class="card-content">
-<h3>📱 Mobile</h3>
-<p>Delta • Cryptic • Vega X • Codex</p>
+<h3>Delta</h3>
+<div class="status">Status: Operational</div>
+<div class="desc">Fast mobile executor</div>
+<button class="copy-btn" onclick="copyText('https://deltaexploits.gg/')">Copy Website</button>
 </div></div>
 
 <div class="card">
+<img src="https://i.ytimg.com/vi/u0FPq640JtI/maxresdefault.jpg">
 <div class="card-content">
-<h3>💻 PC</h3>
-<p>Volt • Wave • Xeno • Solara • Potassium</p>
+<h3>Cryptic</h3>
+<div class="status">Status: Operational</div>
+<div class="desc">Stable executor</div>
+<button class="copy-btn" onclick="copyText('https://getcryptic.net/')">Copy Website</button>
 </div></div>
-</div>
-</section>
 
-<!-- ABOUT -->
-<section id="about">
-<div class="hero">
-<h1>About</h1>
-<p>ScriptNow UI Dashboard</p>
+<div class="card">
+<img src="https://i.ytimg.com/vi/mnuDg1usVRE/maxresdefault.jpg">
+<div class="card-content">
+<h3>Vega X</h3>
+<div class="status">Status: Not Working</div>
+<div class="desc">Currently unavailable</div>
+<button class="copy-btn" onclick="errorMsg('Vega X Website is not working right now. Check back later.')">Copy Website</button>
+</div></div>
+
+<div class="card">
+<img src="https://cdn3.emoji.gg/emojis/73951-codexexecutor.png">
+<div class="card-content">
+<h3>Codex</h3>
+<div class="status">Status: Operational</div>
+<div class="desc">Keyless executor</div>
+<button class="copy-btn" onclick="copyText('https://codex.lol/')">Copy Website</button>
+</div></div>
+
 </div>
+
+<!-- PC -->
+<div id="pc" class="dropdown">
+
+<div class="card">
+<img src="https://storage.sell.app/media-assets/57471/arsvlv93op6nollhow9rcutw">
+<div class="card-content">
+<h3>Volt</h3>
+<div class="status">Status: Operational</div>
+<div class="desc">Premium PC executor</div>
+<button class="copy-btn" onclick="copyText('https://volt.bz/')">Copy Website</button>
+</div></div>
+
+<div class="card">
+<img src="https://waveexecutor.cc/wp-content/uploads/2025/06/Wave_Executor_Logo.png">
+<div class="card-content">
+<h3>Wave</h3>
+<div class="status">Status: Operational</div>
+<div class="desc">Fast injection tool</div>
+<button class="copy-btn" onclick="copyText('https://getwave.gg/')">Copy Website</button>
+</div></div>
+
+<div class="card">
+<img src="https://i.ytimg.com/vi/_VAr8ggJ8EE/maxresdefault.jpg">
+<div class="card-content">
+<h3>Xeno</h3>
+<div class="status">Status: Not Working</div>
+<div class="desc">Legal issues downtime</div>
+<button class="copy-btn" onclick="errorMsg('As of now, Xeno websites are down due to legal reasons.')">Copy Website</button>
+</div></div>
+
+<div class="card">
+<img src="https://tse1.mm.bing.net/th/id/OIP.yw9kInQRfCm9YnkZEK2qBQHaEK">
+<div class="card-content">
+<h3>Solara</h3>
+<div class="status">Status: Operational</div>
+<div class="desc">Lightweight executor</div>
+<button class="copy-btn" onclick="copyText('https://getsolara.dev/')">Copy Website</button>
+</div></div>
+
+<div class="card">
+<img src="https://i.ytimg.com/vi/qxOBSxsOX1s/maxresdefault.jpg">
+<div class="card-content">
+<h3>Potassium</h3>
+<div class="status">Status: Operational</div>
+<div class="desc">Powerful executor</div>
+<button class="copy-btn" onclick="copyText('https://potassium.pro/')">Copy Website</button>
+</div></div>
+
+<div class="card">
+<img src="https://i.ytimg.com/vi/nF9GtNbdogw/maxresdefault.jpg">
+<div class="card-content">
+<h3>Madium</h3>
+<div class="status">Status: Operational</div>
+<div class="desc">Stable executor</div>
+<button class="copy-btn" onclick="copyText('https://madium.net/index.html/')">Copy Website</button>
+</div></div>
+
+</div>
+
 </section>
 
 <script>
+
+/* TOGGLE DROPDOWN */
+function toggle(id){
+document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('active'))
+document.getElementById(id).classList.add('active')
+}
+
+/* COPY */
+function copyText(text){
+navigator.clipboard.writeText(text)
+alert("Copied: " + text)
+}
+
+/* ERROR MESSAGE */
+function errorMsg(msg){
+alert(msg)
+}
 
 /* NAV */
 function show(id){
 document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
 document.getElementById(id).classList.add('active')
-}
-
-/* COPY */
-function copy(text){
-navigator.clipboard.writeText(text)
-const t=document.getElementById("toast")
-t.classList.add("show")
-setTimeout(()=>t.classList.remove("show"),3000)
-}
-
-/* SEARCH */
-function search(){
-let v=document.getElementById("searchBar").value.toLowerCase()
-document.querySelectorAll(".card").forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none"
-})
 }
 
 /* LIGHTNING CURSOR */
@@ -330,35 +286,32 @@ l.style.left=e.clientX+"px"
 l.style.top=e.clientY+"px"
 })
 
-/* GRID BACKGROUND */
+/* BACKGROUND GRID */
 const bg=document.getElementById("bg")
 const ctx=bg.getContext("2d")
 bg.width=innerWidth
 bg.height=innerHeight
 
-function grid(){
+function draw(){
 ctx.clearRect(0,0,bg.width,bg.height)
 ctx.strokeStyle="rgba(255,255,255,0.05)"
-
 for(let x=0;x<bg.width;x+=50){
 ctx.beginPath()
 ctx.moveTo(x,0)
 ctx.lineTo(x,bg.height)
 ctx.stroke()
 }
-
 for(let y=0;y<bg.height;y+=50){
 ctx.beginPath()
 ctx.moveTo(0,y)
 ctx.lineTo(bg.width,y)
 ctx.stroke()
 }
-
-requestAnimationFrame(grid)
+requestAnimationFrame(draw)
 }
-grid()
+draw()
 
-/* FLOATING CUBES */
+/* CUBES */
 const cube=document.getElementById("cubes")
 const c=cube.getContext("2d")
 cube.width=innerWidth
