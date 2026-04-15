@@ -9,11 +9,23 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#000;color:#fff;overflow-x:hidden}
+body{background:#000;color:#fff;overflow:hidden}
 
-/* BACKGROUND */
+/* CANVAS BACKGROUND */
 canvas{position:fixed;inset:0;z-index:-2}
-#cubes{position:fixed;inset:0;z-index:-1;opacity:0.6}
+
+/* CURSOR LIGHT */
+.light{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle,#00ffcc,transparent);
+  box-shadow:0 0 25px #00ffcc;
+  transform:translate(-50%,-50%);
+  z-index:9999;
+}
 
 /* NAV */
 nav{
@@ -23,45 +35,24 @@ nav{
   justify-content:space-between;
   padding:18px 40px;
   background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(10px);
   z-index:10;
 }
-.nav-links span{margin-left:20px;cursor:pointer;opacity:.7}
-.nav-links span:hover{opacity:1;color:#00ffcc}
+nav span{margin-left:20px;cursor:pointer;opacity:.7}
+nav span:hover{opacity:1;color:#00ffcc}
 
 /* SECTIONS */
-section{display:none;min-height:100vh;padding-top:90px}
+section{
+  display:none;
+  min-height:100vh;
+  padding-top:90px;
+}
 section.active{display:block}
 
 /* HERO */
 .hero{text-align:center;margin-top:120px}
 .hero h1{font-size:60px}
 .hero span{color:#00ffcc}
-
-/* BUTTON */
-.explore-btn{
-  margin-top:20px;
-  padding:12px 25px;
-  border:none;
-  border-radius:12px;
-  background:linear-gradient(90deg,#00ffcc,#00a2ff);
-  color:black;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* SEARCH */
-.search{
-  margin:20px auto;
-  display:block;
-  width:80%;
-  max-width:420px;
-  padding:12px;
-  border-radius:12px;
-  border:none;
-  background:#111;
-  color:white;
-}
 
 /* GRID */
 .container{
@@ -77,32 +68,27 @@ section.active{display:block}
   border:1px solid rgba(255,255,255,0.1);
   border-radius:15px;
   overflow:hidden;
-  transition:0.3s;
-}
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 0 18px rgba(0,255,204,0.3);
 }
 .card img{width:100%;height:150px;object-fit:cover}
 .card-content{padding:12px}
-.desc{font-size:12px;color:#777}
-.status{font-size:12px;color:#aaa}
+.desc{font-size:12px;color:#aaa}
 
-.copy-btn{
+.btn{
   width:100%;
-  margin-top:10px;
   padding:8px;
+  margin-top:10px;
   border:none;
   border-radius:8px;
-  background:white;
+  background:#fff;
   cursor:pointer;
 }
 
-/* GRID EFFECT FIX */
-#bg{
+/* CUBES LAYER */
+#cubes{
   position:fixed;
   inset:0;
-  z-index:-2;
+  z-index:-1;
+  opacity:0.5;
 }
 </style>
 </head>
@@ -111,11 +97,12 @@ section.active{display:block}
 
 <canvas id="bg"></canvas>
 <canvas id="cubes"></canvas>
+<div class="light" id="light"></div>
 
 <!-- NAV -->
 <nav>
 <div>ScriptNow</div>
-<div class="nav-links">
+<div>
 <span onclick="show('home')">Home</span>
 <span onclick="show('scripts')">Scripts</span>
 <span onclick="show('executors')">Executors</span>
@@ -127,79 +114,74 @@ section.active{display:block}
 <div class="hero">
 <h1>Elite <br><span>Script Hub</span></h1>
 <p>Roblox Scripts & Executors</p>
-<button class="explore-btn" onclick="show('scripts')">Explore Scripts</button>
 </div>
 </section>
 
-<!-- SCRIPTS -->
+<!-- SCRIPTS (ALL RESTORED) -->
 <section id="scripts">
-
-<input class="search" id="searchBar" placeholder="Search..." onkeyup="search()">
-
 <div class="container">
 
-<!-- Infinite Yield -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
 <div class="card-content">
 <h3>Infinite Yield</h3>
-<div class="status">Operational</div>
 <div class="desc">Admin script</div>
-<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source\'))()')">Copy Script</button>
+<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source\'))()')">Copy</button>
 </div></div>
 
-<!-- HoHo -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
 <div class="card-content">
 <h3>HoHo Hub</h3>
-<div class="status">Operational</div>
-<div class="desc">Multi-game hub</div>
-<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI\'))()')">Copy Script</button>
+<div class="desc">Multi game hub</div>
+<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI\'))()')">Copy</button>
 </div></div>
 
-<!-- Quantum Onyx (RESTORED) -->
 <div class="card">
 <img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
 <div class="card-content">
 <h3>Quantum Onyx</h3>
-<div class="status">Operational</div>
 <div class="desc">Blox Fruits hub</div>
-<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua\'))()')">Copy Script</button>
+<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua\'))()')">Copy</button>
 </div></div>
 
-<!-- Deluxed Hub (RESTORED) -->
 <div class="card">
-<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK?w=331&h=186">
+<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK">
 <div class="card-content">
 <h3>Deluxed Hub</h3>
-<div class="status">Operational</div>
-<div class="desc">Dandys World script</div>
-<button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua\',true))()')">Copy Script</button>
+<div class="desc">Dandy’s World script</div>
+<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua\',true))()')">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1753093706828.png">
+<div class="card-content">
+<h3>Moondeity</h3>
+<div class="desc">Universal hub</div>
+<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://moondiety.com/loader\'))()')">Copy</button>
+</div></div>
+
+<div class="card">
+<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
+<div class="card-content">
+<h3>Dropkick Fling</h3>
+<div class="desc">Fling script</div>
+<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua\'))()')">Copy</button>
 </div></div>
 
 </div>
 </section>
 
-<!-- EXECUTORS -->
+<!-- EXECUTORS (RESTORED) -->
 <section id="executors">
-
-<div class="hero">
-<h1>Executors</h1>
-<p>Mobile & PC Split</p>
-</div>
-
 <div class="container">
-
-<!-- MOBILE -->
-<h2 style="width:100%;color:#00ffcc;">📱 MOBILE EXECUTORS</h2>
 
 <div class="card">
 <img src="https://discord.do/wp-content/uploads/2025/03/Delta-executor-Discord-server.jpg">
 <div class="card-content">
 <h3>Delta</h3>
 <div class="desc">Mobile executor</div>
-<button class="copy-btn" onclick="copy('https://deltaexploits.gg/')">Copy Website</button>
+<button class="btn" onclick="copy('https://deltaexploits.gg/')">Copy</button>
 </div></div>
 
 <div class="card">
@@ -207,26 +189,23 @@ section.active{display:block}
 <div class="card-content">
 <h3>Cryptic</h3>
 <div class="desc">Mobile executor</div>
-<button class="copy-btn" onclick="copy('https://getcryptic.net/')">Copy Website</button>
+<button class="btn" onclick="copy('https://getcryptic.net/')">Copy</button>
 </div></div>
 
 <div class="card">
 <img src="https://cdn3.emoji.gg/emojis/73951-codexexecutor.png">
 <div class="card-content">
 <h3>Codex</h3>
-<div class="desc">Keyless executor</div>
-<button class="copy-btn" onclick="copy('https://codex.lol/')">Copy Website</button>
+<div class="desc">Mobile executor</div>
+<button class="btn" onclick="copy('https://codex.lol/')">Copy</button>
 </div></div>
-
-<!-- PC -->
-<h2 style="width:100%;color:#00ffcc;">💻 PC EXECUTORS</h2>
 
 <div class="card">
 <img src="https://storage.sell.app/media-assets/57471/arsvlv93op6nollhow9rcutw">
 <div class="card-content">
 <h3>Volt</h3>
 <div class="desc">PC executor</div>
-<button class="copy-btn" onclick="copy('https://volt.bz/')">Copy Website</button>
+<button class="btn" onclick="copy('https://volt.bz/')">Copy</button>
 </div></div>
 
 <div class="card">
@@ -234,7 +213,7 @@ section.active{display:block}
 <div class="card-content">
 <h3>Wave</h3>
 <div class="desc">PC executor</div>
-<button class="copy-btn" onclick="copy('https://getwave.gg/')">Copy Website</button>
+<button class="btn" onclick="copy('https://getwave.gg/')">Copy</button>
 </div></div>
 
 </div>
@@ -242,7 +221,7 @@ section.active{display:block}
 
 <script>
 
-/* SWITCH */
+/* PAGE SWITCH */
 function show(id){
 document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
 document.getElementById(id).classList.add('active')
@@ -253,21 +232,20 @@ function copy(text){
 navigator.clipboard.writeText(text)
 }
 
-/* SEARCH */
-function search(){
-let v=document.getElementById("searchBar").value.toLowerCase()
-document.querySelectorAll(".card").forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none"
+/* CURSOR LIGHT */
+const light=document.getElementById("light")
+document.addEventListener("mousemove",e=>{
+light.style.left=e.clientX+"px"
+light.style.top=e.clientY+"px"
 })
-}
 
-/* GRID FIX */
+/* GRID BACKGROUND */
 const bg=document.getElementById("bg")
 const ctx=bg.getContext("2d")
 bg.width=innerWidth
 bg.height=innerHeight
 
-function draw(){
+function grid(){
 ctx.clearRect(0,0,bg.width,bg.height)
 ctx.strokeStyle="rgba(255,255,255,0.05)"
 for(let x=0;x<bg.width;x+=50){
@@ -282,9 +260,32 @@ ctx.moveTo(0,y)
 ctx.lineTo(bg.width,y)
 ctx.stroke()
 }
-requestAnimationFrame(draw)
+requestAnimationFrame(grid)
 }
-draw()
+grid()
+
+/* FLOATING CUBES */
+const cubes=document.getElementById("cubes")
+const c=cubes.getContext("2d")
+cubes.width=innerWidth
+cubes.height=innerHeight
+
+let arr=[]
+for(let i=0;i<20;i++){
+arr.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:20,v:1})
+}
+
+function animate(){
+c.clearRect(0,0,cubes.width,cubes.height)
+arr.forEach(b=>{
+b.y-=b.v
+if(b.y<-50)b.y=innerHeight+50
+c.strokeStyle="rgba(0,255,204,0.2)"
+c.strokeRect(b.x,b.y,b.s,b.s)
+})
+requestAnimationFrame(animate)
+}
+animate()
 
 </script>
 
