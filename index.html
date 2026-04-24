@@ -1,292 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ScriptNow</title>
+    <meta charset="UTF-8">
+    <title>LUNA Key Generator</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            margin-top: 100px;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #6366f1;
+            color: white;
+            cursor: pointer;
+        }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#000;color:#fff;overflow:hidden}
+        button:disabled {
+            background: gray;
+            cursor: not-allowed;
+        }
 
-/* CANVAS BACKGROUND */
-canvas{position:fixed;inset:0;z-index:-2}
+        #keyBox {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #22c55e;
+        }
 
-/* CURSOR LIGHT */
-.light{
-  position:fixed;
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(circle,#00ffcc,transparent);
-  box-shadow:0 0 25px #00ffcc;
-  transform:translate(-50%,-50%);
-  z-index:9999;
-}
-
-/* NAV */
-nav{
-  position:fixed;
-  top:0;width:100%;
-  display:flex;
-  justify-content:space-between;
-  padding:18px 40px;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(10px);
-  z-index:10;
-}
-nav span{margin-left:20px;cursor:pointer;opacity:.7}
-nav span:hover{opacity:1;color:#00ffcc}
-
-/* SECTIONS */
-section{
-  display:none;
-  min-height:100vh;
-  padding-top:90px;
-}
-section.active{display:block}
-
-/* HERO */
-.hero{text-align:center;margin-top:120px}
-.hero h1{font-size:60px}
-.hero span{color:#00ffcc}
-
-/* GRID */
-.container{
-  padding:40px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-}
-
-/* CARD */
-.card{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:15px;
-  overflow:hidden;
-}
-.card img{width:100%;height:150px;object-fit:cover}
-.card-content{padding:12px}
-.desc{font-size:12px;color:#aaa}
-
-.btn{
-  width:100%;
-  padding:8px;
-  margin-top:10px;
-  border:none;
-  border-radius:8px;
-  background:#fff;
-  cursor:pointer;
-}
-
-/* CUBES LAYER */
-#cubes{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  opacity:0.5;
-}
-</style>
+        #cooldown {
+            margin-top: 10px;
+            color: #facc15;
+        }
+    </style>
 </head>
-
 <body>
 
-<canvas id="bg"></canvas>
-<canvas id="cubes"></canvas>
-<div class="light" id="light"></div>
+    <h1>LUNA Key Generator</h1>
+    <button id="genBtn">Generate Key</button>
 
-<!-- NAV -->
-<nav>
-<div>ScriptNow</div>
-<div>
-<span onclick="show('home')">Home</span>
-<span onclick="show('scripts')">Scripts</span>
-<span onclick="show('executors')">Executors</span>
-</div>
-</nav>
-
-<!-- HOME -->
-<section id="home" class="active">
-<div class="hero">
-<h1>Elite <br><span>Script Hub</span></h1>
-<p>Roblox Scripts & Executors</p>
-</div>
-</section>
-
-<!-- SCRIPTS (ALL RESTORED) -->
-<section id="scripts">
-<div class="container">
-
-<div class="card">
-<img src="https://i.ytimg.com/vi/OR3HDLmVJlk/maxresdefault.jpg">
-<div class="card-content">
-<h3>Infinite Yield</h3>
-<div class="desc">Admin script</div>
-<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source\'))()')">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://i.ytimg.com/vi/H_C1PSElQGw/maxresdefault.jpg">
-<div class="card-content">
-<h3>HoHo Hub</h3>
-<div class="desc">Multi game hub</div>
-<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI\'))()')">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://i.ytimg.com/vi/N6Un-tdrFJw/maxresdefault.jpg">
-<div class="card-content">
-<h3>Quantum Onyx</h3>
-<div class="desc">Blox Fruits hub</div>
-<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua\'))()')">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://th.bing.com/th/id/OIP.Altclxeb5dRElDmff-YBdQHaEK">
-<div class="card-content">
-<h3>Deluxed Hub</h3>
-<div class="desc">Dandy’s World script</div>
-<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/VearyTry/DeluxedHub/main/dandysworld.lua\',true))()')">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1753093706828.png">
-<div class="card-content">
-<h3>Moondeity</h3>
-<div class="desc">Universal hub</div>
-<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://moondiety.com/loader\'))()')">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://scriptblox.com/images/script/0-1776041891249.jpg">
-<div class="card-content">
-<h3>Dropkick Fling</h3>
-<div class="desc">Fling script</div>
-<button class="btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/universal/DropKick.lua\'))()')">Copy</button>
-</div></div>
-
-</div>
-</section>
-
-<!-- EXECUTORS (RESTORED) -->
-<section id="executors">
-<div class="container">
-
-<div class="card">
-<img src="https://discord.do/wp-content/uploads/2025/03/Delta-executor-Discord-server.jpg">
-<div class="card-content">
-<h3>Delta</h3>
-<div class="desc">Mobile executor</div>
-<button class="btn" onclick="copy('https://deltaexploits.gg/')">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://i.ytimg.com/vi/u0FPq640JtI/maxresdefault.jpg">
-<div class="card-content">
-<h3>Cryptic</h3>
-<div class="desc">Mobile executor</div>
-<button class="btn" onclick="copy('https://getcryptic.net/')">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://cdn3.emoji.gg/emojis/73951-codexexecutor.png">
-<div class="card-content">
-<h3>Codex</h3>
-<div class="desc">Mobile executor</div>
-<button class="btn" onclick="copy('https://codex.lol/')">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://storage.sell.app/media-assets/57471/arsvlv93op6nollhow9rcutw">
-<div class="card-content">
-<h3>Volt</h3>
-<div class="desc">PC executor</div>
-<button class="btn" onclick="copy('https://volt.bz/')">Copy</button>
-</div></div>
-
-<div class="card">
-<img src="https://waveexecutor.cc/wp-content/uploads/2025/06/Wave_Executor_Logo.png">
-<div class="card-content">
-<h3>Wave</h3>
-<div class="desc">PC executor</div>
-<button class="btn" onclick="copy('https://getwave.gg/')">Copy</button>
-</div></div>
-
-</div>
-</section>
+    <div id="keyBox"></div>
+    <div id="cooldown"></div>
 
 <script>
+    const btn = document.getElementById("genBtn");
+    const keyBox = document.getElementById("keyBox");
+    const cooldownText = document.getElementById("cooldown");
 
-/* PAGE SWITCH */
-function show(id){
-document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
-document.getElementById(id).classList.add('active')
-}
+    const COOLDOWN_TIME = 24 * 60 * 60 * 1000; // 24 hours
 
-/* COPY */
-function copy(text){
-navigator.clipboard.writeText(text)
-}
+    function generateKey() {
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let result = "LUNA_";
 
-/* CURSOR LIGHT */
-const light=document.getElementById("light")
-document.addEventListener("mousemove",e=>{
-light.style.left=e.clientX+"px"
-light.style.top=e.clientY+"px"
-})
+        for (let i = 0; i < 8; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
 
-/* GRID BACKGROUND */
-const bg=document.getElementById("bg")
-const ctx=bg.getContext("2d")
-bg.width=innerWidth
-bg.height=innerHeight
+        return result;
+    }
 
-function grid(){
-ctx.clearRect(0,0,bg.width,bg.height)
-ctx.strokeStyle="rgba(255,255,255,0.05)"
-for(let x=0;x<bg.width;x+=50){
-ctx.beginPath()
-ctx.moveTo(x,0)
-ctx.lineTo(x,bg.height)
-ctx.stroke()
-}
-for(let y=0;y<bg.height;y+=50){
-ctx.beginPath()
-ctx.moveTo(0,y)
-ctx.lineTo(bg.width,y)
-ctx.stroke()
-}
-requestAnimationFrame(grid)
-}
-grid()
+    function checkCooldown() {
+        const lastGen = localStorage.getItem("lastKeyTime");
 
-/* FLOATING CUBES */
-const cubes=document.getElementById("cubes")
-const c=cubes.getContext("2d")
-cubes.width=innerWidth
-cubes.height=innerHeight
+        if (lastGen) {
+            const now = Date.now();
+            const diff = now - parseInt(lastGen);
 
-let arr=[]
-for(let i=0;i<20;i++){
-arr.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:20,v:1})
-}
+            if (diff < COOLDOWN_TIME) {
+                const remaining = COOLDOWN_TIME - diff;
+                const hours = Math.floor(remaining / (1000 * 60 * 60));
+                const mins = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
 
-function animate(){
-c.clearRect(0,0,cubes.width,cubes.height)
-arr.forEach(b=>{
-b.y-=b.v
-if(b.y<-50)b.y=innerHeight+50
-c.strokeStyle="rgba(0,255,204,0.2)"
-c.strokeRect(b.x,b.y,b.s,b.s)
-})
-requestAnimationFrame(animate)
-}
-animate()
+                btn.disabled = true;
+                cooldownText.innerText = `Come back in ${hours}h ${mins}m`;
+                return;
+            }
+        }
 
+        btn.disabled = false;
+        cooldownText.innerText = "";
+    }
+
+    btn.addEventListener("click", () => {
+        const key = generateKey();
+        keyBox.innerText = key;
+
+        localStorage.setItem("lastKeyTime", Date.now().toString());
+
+        checkCooldown();
+    });
+
+    checkCooldown();
 </script>
 
 </body>
